@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="calculator">
+ <input type="text" id="display" readonly />
+   <div class="calculator">
         <div class="header">
             <div class="brand">
                 <span class="casio-logo">CASIO</span>
@@ -191,26 +192,26 @@
                 <div class="labels-above">
                     <span class="shift-text-label">CONST</span>
                 </div>
-                <span class="main-content">7</span>
+                <button class="btn" data-value="7">7</button>
             </button>
             <button class="btn btn-numeric">
                 <div class="labels-above">
                     <span class="shift-text-label">CONV</span>
                 </div>
-                <span class="main-content">8</span>
+                <button class="btn" data-value="8">8</button>
             </button>
             <button class="btn btn-numeric">
                 <div class="labels-above">
                     <span class="shift-text-label">RESET</span>
                 </div>
-                <span class="main-content">9</span>
+                <button class="btn" data-value="9">9</button>
             </button>
             <button class="btn btn-control-del">
                 <div class="labels-above">
                     <span class="shift-text-label">INS</span>
                     <span class="alpha-text-label">UNDO</span>
                 </div>
-                <span class="main-content">DEL</span>
+                <button class="btn" data-value="C">C</button>
             </button>
             <button class="btn btn-control-ac">
                 <div class="labels-above">
@@ -224,13 +225,13 @@
         <div class="function-row number-pad-row"> <!-- Using function-row for consistency, specific grid in CSS -->
             <button class="btn btn-numeric">
                 <!-- No labels above for 4, 5, 6 -->
-                <span class="main-content">4</span>
+                <button class="btn" data-value="4">4</button>
             </button>
             <button class="btn btn-numeric">
-                <span class="main-content">5</span>
+                <button class="btn" data-value="5">5</button>
             </button>
             <button class="btn btn-numeric">
-                <span class="main-content">6</span>
+                <button class="btn" data-value="6">6</button>
             </button>
             <button class="btn btn-operator">
                 <div class="labels-above">
@@ -249,25 +250,25 @@
         <!-- Number Pad Row 3 ("8th line" - 1,2,3,+,−) -->
         <div class="function-row number-pad-row">
             <button class="btn btn-numeric">
-                <span class="main-content">1</span>
+               <button class="btn" data-value="1">1</button>
             </button>
             <button class="btn btn-numeric">
-                <span class="main-content">2</span>
+                <button class="btn" data-value="2">2</button>
             </button>
             <button class="btn btn-numeric">
-                <span class="main-content">3</span>
+                <button class="btn" data-value="3">3</button>
             </button>
             <button class="btn btn-operator">
                 <div class="labels-above">
                     <span class="shift-text-label">Pol</span>
                 </div>
-                <span class="main-content op-symbol">+</span>
+               <button class="btn" data-value="+">+</button>
             </button>
             <button class="btn btn-operator">
                 <div class="labels-above">
                     <span class="shift-text-label">Rec</span>
                 </div>
-                <span class="main-content op-symbol op-minus">−</span>
+                <button class="btn" data-value="-">-</button>
             </button>
         </div>
 
@@ -277,14 +278,14 @@
                 <div class="labels-above">
                     <span class="shift-text-label">Rnd</span>
                 </div>
-                <span class="main-content">0</span>
+                <button class="btn" data-value="0">0</button>
             </button>
             <button class="btn btn-numeric"> <!-- Decimal button styled as numeric -->
                 <div class="labels-above">
                     <span class="shift-text-label">Ran#</span>
                     <span class="alpha-text-label">RanInt</span>
                 </div>
-                <span class="main-content decimal-point">.</span>
+                <button class="btn" data-value=".">.</button>
             </button>
             <button class="btn btn-numeric"> <!-- x10^x button styled as numeric for color -->
                 <div class="labels-above">
@@ -303,10 +304,31 @@
                 <div class="labels-above">
                     <span class="shift-text-label">≈</span>
                 </div>
-                <span class="main-content op-symbol">=</span>
+                <button class="btn" data-value="=">=</button>
             </button>
         </div>
+<script>
+  let display = document.getElementById('display');
+  let buttons = document.querySelectorAll('.btn');
 
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const value = button.getAttribute('data-value');
+
+      if (value === 'C') {
+        display.value = '';
+      } else if (value === '=') {
+        try {
+          display.value = eval(display.value);
+        } catch {
+          display.value = 'Error';
+        }
+      } else {
+        display.value += value;
+      }
+    });
+  });
+</script>
     </div> <!-- This is the existing closing div for "calculator" -->
 </body>
 </html>
