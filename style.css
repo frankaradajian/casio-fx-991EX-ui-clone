@@ -11,7 +11,11 @@ body {
 }
 
 .calculator {
-    width: 330px;
+    width: 600px; /* ← updated width for landscape */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* ← adjust based on your button layout */
+    grid-template-rows: auto 1fr;
+    gap: 10px;
     background-color: #333740;
     background-image: linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02)),
                       linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02));
