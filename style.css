@@ -86,8 +86,8 @@ body {
 
 .display-area {
     position: absolute;
-  top: 10;
-  right: 5;
+  top: 11;
+  right: 0.5;
   width: 400px; /* 👈 Adjust this value as needed */
   height: 50px; /* 👈 Adjust this value as needed */
   /* existing styles stay */
