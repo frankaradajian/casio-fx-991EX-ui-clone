@@ -132,6 +132,19 @@ body {
     min-height: 17px;
 }
 
+.live-display {
+  width: 100%;
+  height: 100%;
+  font-size: 24px;            /* Adjust for readability */
+  text-align: center;         /* Center the text horizontally */
+  font-family: 'Roboto Mono', monospace; /* Matches your theme */
+  background-color: transparent; /* Seamless with screen */
+  border: none;               /* Removes input border */
+  color: #1a2a1a;             /* Matches your display text color */
+  padding: 0 10px;            /* Optional: horizontal breathing room */
+  pointer-events: none;       /* Prevents accidental clicks */
+}
+
 .top-controls {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -500,7 +513,7 @@ sup > .sym-box-inline, .main-content sup > .sym-box-inline { transform: translat
 }
 
 /* Override for row 5 buttons that don't have alpha label for centering main content better */
-.row5-buttons .btn:not(:has(.alpha-text-label)) .shift-text-label ~ .main-content {
+.row5-buttons .btn:not(:has(.alpha-text-label)) .shift-text-label ~ .main-content {margin-top: 14px;
      /* If only shift label, the margin-top: 14px still applies which is fine */
 }
 .row5-buttons .btn:not(:has(.shift-text-label)):not(:has(.alpha-text-label)) .main-content {
