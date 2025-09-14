@@ -11,6 +11,8 @@ body {
 }
 
 .calculator {
+    position: relative;
+  /* other layout styles */
     width: 600px; /* ← updated width for landscape */
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* ← adjust based on your button layout */
@@ -25,6 +27,11 @@ body {
     padding: 18px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 3px #2a2e35;
     color: white;
+      /* Now insert your new layout commands */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* aligns children to the left */
+  padding: 20px;
 }
 
 .header {
@@ -77,6 +84,10 @@ body {
 }
 
 .display-area {
+    position: absolute;
+  top: 0;
+  right: 0;
+  /* existing styles stay */
     background: linear-gradient(to bottom, #d0e0d0, #b8c8b8);
     border: 1px solid #333;
     border-top-color: #555;
