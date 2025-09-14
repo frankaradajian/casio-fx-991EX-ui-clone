@@ -14,6 +14,7 @@ body {
     position: relative;
   /* other layout styles */
     width: 600px; /* ← updated width for landscape */
+    height: 400px; /* ← updated width for landscape */
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* ← adjust based on your button layout */
     grid-template-rows: auto 1fr;
@@ -87,6 +88,8 @@ body {
     position: absolute;
   top: 0;
   right: 0;
+  width: 400px; /* 👈 Adjust this value as needed */
+  height: 50px; /* 👈 Adjust this value as needed */
   /* existing styles stay */
     background: linear-gradient(to bottom, #d0e0d0, #b8c8b8);
     border: 1px solid #333;
