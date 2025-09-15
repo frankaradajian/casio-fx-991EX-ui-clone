@@ -84,6 +84,22 @@ body {
     box-shadow: inset 0 0 4px rgba(0,0,0,0.6);
 }
 
+.screen-wrapper {
+  position: relative;
+  width: 360px;       /* Match mock screen width */
+  margin: 0 auto;     /* Center horizontally */
+}
+
+.mock-screen {
+  position: relative;
+  width: 360px;
+  height: 60px;
+  background: linear-gradient(to bottom, #d0e0d0, #b8c8b8);
+  border: 2px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
 .display-area {
     position: absolute;
   top: 11px;
