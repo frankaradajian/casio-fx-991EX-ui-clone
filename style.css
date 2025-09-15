@@ -90,15 +90,7 @@ body {
   margin: 0 auto;     /* Center horizontally */
 }
 
-.mock-screen {
-  position: relative;
-  width: 360px;
-  height: 60px;
-  background: linear-gradient(to bottom, #d0e0d0, #b8c8b8);
-  border: 2px solid #333;
-  border-radius: 8px;
-  overflow: hidden;
-}
+
 
 .display-area {
     position: absolute;
