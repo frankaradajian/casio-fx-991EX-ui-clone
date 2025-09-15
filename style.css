@@ -97,7 +97,7 @@ body {
   top: 11px;
   right: 5px;
   width: 360px; /* Adjust this to match mock screen width */
-  height: 70px; /* Optional: tweak height for better fit */
+  height: 100px; /* Optional: tweak height for better fit */
   box-sizing: border-box;
   /* existing styles stay */
     background: linear-gradient(to bottom, #d0e0d0, #b8c8b8);
