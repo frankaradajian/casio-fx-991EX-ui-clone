@@ -88,8 +88,9 @@ body {
     position: absolute;
   top: 11px;
   right: 5px;
-  width: 400px; /* 👈 Adjust this value as needed */
-  height: 50px; /* 👈 Adjust this value as needed */
+  width: 360px; /* Adjust this to match mock screen width */
+  height: 45px; /* Optional: tweak height for better fit */
+  box-sizing: border-box;
   /* existing styles stay */
     background: linear-gradient(to bottom, #d0e0d0, #b8c8b8);
     border: 1px solid #333;
@@ -138,7 +139,8 @@ body {
   font-size: 24px;            /* Adjust for readability */
   text-align: right;         /* right the text horizontally */
   font-family: 'Roboto Mono', monospace; /* Matches your theme */
-  background-color: #cce5cc; /* Soft green tint */
+  background: linear-gradient(to bottom, #d0e0d0, #b8c8b8); /* Match .display-area */
+  /* rest stays the same */
   border: none;               /* Removes input border */
   color: #1a2a1a;             /* Matches your display text color */
   padding: 0 10px;            /* Optional: horizontal breathing room */
