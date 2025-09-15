@@ -85,12 +85,12 @@ body {
 }
 
 .screen-wrapper {
-  position: relative;
-  width: 360px;       /* Match mock screen width */
-  margin: 0 auto;     /* Center horizontally */
+  position: absolute; /* Changed from relative */
+  top: 12px;           /* Adjust as needed */
+  right: 12px;         /* Adjust as needed */
+  width: 360px;
+  z-index: 10;         /* Ensure it sits above background layers */
 }
-
-
 
 .display-area {
     position: absolute;
