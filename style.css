@@ -136,13 +136,16 @@ body {
   width: 100%;
   height: 100%;
   font-size: 24px;            /* Adjust for readability */
-  text-align: center;         /* Center the text horizontally */
+  text-align: right;         /* right the text horizontally */
   font-family: 'Roboto Mono', monospace; /* Matches your theme */
-  background-color: transparent; /* Seamless with screen */
+  background-color: #cce5cc; /* Soft green tint */
   border: none;               /* Removes input border */
   color: #1a2a1a;             /* Matches your display text color */
   padding: 0 10px;            /* Optional: horizontal breathing room */
   pointer-events: none;       /* Prevents accidental clicks */
+  /* New additions for realism */
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
 }
 
 .top-controls {
