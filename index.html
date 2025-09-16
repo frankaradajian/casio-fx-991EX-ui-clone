@@ -107,7 +107,7 @@
                 <span class="base-n-text-label">DEC</span> <!-- Top-right blue -->
                 <span class="main-content">x<sup>2</sup></span>
             </button>
-            <button class="btn"> <!-- x^□ (Exponent) Button -->
+            <button class="btn" onclick="prepareExponent()" data-value=""> <!-- x^□ (Exponent) Button -->
                 <span class="shift-text-label"><sup><span class="sym-box-inline-sup"></span></sup>√x</span>
                 <span class="base-n-text-label">HEX</span> <!-- Top-right blue -->
                 <span class="main-content">x<sup><span class="sym-box-inline-sup"></span></sup></span>
@@ -339,6 +339,42 @@ buttons.forEach(button => {
 </script>
 
 <script>
+    // Function: Exponent (x^□)
+ let baseForExponent = null;
+
+function prepareExponent(event) {
+  if (event) event.preventDefault();
+
+  const display = document.getElementById('display');
+  const value = parseFloat(display.value);
+
+  if (isNaN(value)) {
+    alert("Please enter a valid base number.");
+    return;
+  }
+
+  baseForExponent = value;
+  display.value = ''; // Clear display so user can enter exponent
+}
+
+else if (value === '=') {
+  try {
+    if (baseForExponent !== null) {
+      const exponent = parseFloat(display.value);
+      display.value = Math.pow(baseForExponent, exponent);
+      baseForExponent = null; // Reset after use
+    } else {
+      display.value = eval(display.value);
+    }
+  } catch {
+    display.value = 'Error';
+  }
+}
+
+</script>
+
+<script>
+    // Function: Multiplicative Inverse (x⁻¹)
 function calculateInverse(event) {
   if (event) event.preventDefault();
 
