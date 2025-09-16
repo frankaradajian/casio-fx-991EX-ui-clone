@@ -177,6 +177,16 @@ body {
   padding: 4px;
 }
 
+.labels-above {
+  font-size: 0.6em;
+  opacity: 0.8;
+  margin-bottom: 2px;
+}
+
+.main-content {
+  font-size: 1em;
+  font-weight: bold;
+}
 
 .top-controls {
     display: grid;
