@@ -194,6 +194,10 @@ body {
   padding: 4px;
 }
 
+.btn.btn-numeric {
+  background-color: #303030 !important;
+}
+
 .btn-shifted .shift-text-label {
   color: #ffd700; /* Yellow for SHIFT */
 }
@@ -216,8 +220,8 @@ body {
 }
 
 .main-text-label {
+  color: #e0e0e0 !important;
   font-size: 1em;
-  color: #222;
 }
 
 .top-controls {
