@@ -136,7 +136,7 @@
                 <span class="alpha-text-label">B</span>
                 <span class="main-content dms-symbol">° ′ ″</span>
             </button>
-            <button class="btn" onclick="calculateInverse()">
+            <button class="btn" onclick="calculateInverse()" data-value="">
                 <span class="shift-text-label">x!</span>
                 <span class="alpha-text-label">C</span>
                 <span class="main-content">x<sup>-1</sup></span>
@@ -343,7 +343,7 @@ buttons.forEach(button => {
     const value = button.getAttribute('data-value');
 
     // Skip buttons without data-value (like x⁻¹)
-    if (value === null || value === undefined) return;
+   if (!value) return; 
 
     if (value === 'C') {
       display.value = '';
