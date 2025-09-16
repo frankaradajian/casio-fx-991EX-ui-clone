@@ -240,55 +240,55 @@
                 <div class="labels-above">
                     <span class="shift-text-label">nPr</span>
                 </div>
-                <div class="main-content">x</div>
+                <span class="main-content op-symbol">×</span>
             </button>
             <button class="btn btn-operator" data-value="/">
                 <div class="labels-above">
                     <span class="shift-text-label">nCr</span>
                 </div>
-                <div class="main-content">÷</div>
+                <span class="main-content op-symbol">÷</span>
             </button>
         </div>
 
         <!-- Number Pad Row 3 ("8th line" - 1,2,3,+,−) -->
         <div class="function-row number-pad-row">
-            <button class="btn btn-numeric">
-               <button class="btn" data-value="1">1</button>
+            <button class="btn btn-numeric" data-value="1">
+               <span class="main-content">1</span>
             </button>
-            <button class="btn btn-numeric">
-                <button class="btn" data-value="2">2</button>
+            <button class="btn btn-numeric" data-value="2">
+                <span class="main-content">2</span>
             </button>
-            <button class="btn btn-numeric">
-                <button class="btn" data-value="3">3</button>
+            <button class="btn btn-numeric" data-value="3">
+                <span class="main-content">3</span>
             </button>
-            <button class="btn btn-operator">
+            <button class="btn btn-operator" data-value="+">
                 <div class="labels-above">
                     <span class="shift-text-label">Pol</span>
                 </div>
-               <button class="btn" data-value="+">+</button>
+               <span class="main-content op-symbol">+</span>
             </button>
-            <button class="btn btn-operator">
+            <button class="btn btn-operator" data-value="-">
                 <div class="labels-above">
                     <span class="shift-text-label">Rec</span>
                 </div>
-                <button class="btn" data-value="-">-</button>
+                <span class="main-content op-symbol op-minus">−</span>
             </button>
         </div>
 
         <!-- Number Pad Row 4 ("9th line" - 0,.,x10^x,Ans,=) -->
         <div class="function-row number-pad-row">
-            <button class="btn btn-numeric">
+            <button class="btn btn-numeric" data-value="0">
                 <div class="labels-above">
                     <span class="shift-text-label">Rnd</span>
                 </div>
-                <button class="btn" data-value="0">0</button>
+                <span class="main-content">0</span>
             </button>
-            <button class="btn btn-numeric"> <!-- Decimal button styled as numeric -->
+            <button class="btn btn-numeric" data-value="."> <!-- Decimal button styled as numeric -->
                 <div class="labels-above">
                     <span class="shift-text-label">Ran#</span>
                     <span class="alpha-text-label">RanInt</span>
                 </div>
-                <button class="btn" data-value=".">.</button>
+                <span class="main-content decimal-point">.</span
             </button>
             <button class="btn btn-numeric"> <!-- x10^x button styled as numeric for color -->
                 <div class="labels-above">
@@ -303,11 +303,11 @@
                 </div>
                 <span class="main-content">Ans</span>
             </button>
-            <button class="btn btn-operator btn-equals"> <!-- Equals button with operator style -->
+            <button class="btn btn-operator btn-equals" data-value="="> <!-- Equals button with operator style -->
                 <div class="labels-above">
                     <span class="shift-text-label">≈</span>
                 </div>
-                <button class="btn" data-value="=">=</button>
+                <span class="main-content op-symbol">=</span>
             </button>
         </div>
 <script>
