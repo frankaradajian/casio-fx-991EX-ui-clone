@@ -327,7 +327,13 @@ buttons.forEach(button => {
       display.value = '';
     } else if (value === '=') {
       try {
+      if (baseForExponent !== null) {
+          const exponent = parseFloat(display.value);
+          display.value = Math.pow(baseForExponent, exponent);
+          baseForExponent = null;
+        } else {
         display.value = eval(display.value);
+        }
       } catch {
         display.value = 'Error';
       }
@@ -343,6 +349,7 @@ buttons.forEach(button => {
  let baseForExponent = null;
 
 function prepareExponent(event) {
+  console.log("Exponent button clicked");
   if (event) event.preventDefault();
 
   const display = document.getElementById('display');
@@ -357,19 +364,6 @@ function prepareExponent(event) {
   display.value = ''; // Clear display so user can enter exponent
 }
 
-else if (value === '=') {
-  try {
-    if (baseForExponent !== null) {
-      const exponent = parseFloat(display.value);
-      display.value = Math.pow(baseForExponent, exponent);
-      baseForExponent = null; // Reset after use
-    } else {
-      display.value = eval(display.value);
-    }
-  } catch {
-    display.value = 'Error';
-  }
-}
 
 </script>
 
