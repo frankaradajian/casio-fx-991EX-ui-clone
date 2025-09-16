@@ -136,7 +136,7 @@
                 <span class="alpha-text-label">B</span>
                 <span class="main-content dms-symbol">° ′ ″</span>
             </button>
-            <button class="btn btn-numeric"onclick="calculateInverse(event)">
+            <button class="btn" onclick="calculateInverse()">
                 <span class="shift-text-label">x!</span>
                 <span class="alpha-text-label">C</span>
                 <span class="main-content">x<sup>-1</sup></span>
@@ -334,28 +334,51 @@
     });
   });
 </script>
+<script>
+ let display = document.getElementById('display');
+let buttons = document.querySelectorAll('.btn');
 
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const value = button.getAttribute('data-value');
+
+    // Skip buttons without data-value (like x⁻¹)
+    if (value === null || value === undefined) return;
+
+    if (value === 'C') {
+      display.value = '';
+    } else if (value === '=') {
+      try {
+        display.value = eval(display.value);
+      } catch {
+        display.value = 'Error';
+      }
+    } else {
+      display.value += value;
+    }
+  });
+});
+</script>
 
 <script>
-  function calculateInverse(event) {
-    if (event) event.preventDefault(); // Stop form submission or bubbling
+function calculateInverse(event) {
+  if (event) event.preventDefault();
 
-    const display = document.getElementById('display');
-    const value = parseFloat(display.value);
+  const display = document.getElementById('display');
+  const value = parseFloat(display.value);
 
-    if (isNaN(value)) {
-      alert("Please enter a valid number.");
-      return;
-    }
-
-    if (value === 0) {
-      alert("Error: Division by zero.");
-      return;
-    }
-
-   const inverse = 1 / value;
-  display.value = inverse;
+  if (isNaN(value)) {
+    alert("Please enter a valid number.");
+    return;
   }
+
+  if (value === 0) {
+    alert("Error: Division by zero.");
+    return;
+  }
+
+  display.value = 1 / value;
+}
 </script>
 
     </div> <!-- This is the existing closing div for "calculator" -->
