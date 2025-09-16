@@ -340,7 +340,8 @@
 
 <script>
   function calculateInverse() {
-    if (event) event.preventDefault();
+    if (event) event.preventDefault(); // Stop form submission or bubbling
+
     const display = document.getElementById('display');
     const value = parseFloat(display.value);
 
