@@ -340,6 +340,7 @@
 
 <script>
   function calculateInverse() {
+    if (event) event.preventDefault();
     const display = document.getElementById('display');
     const value = parseFloat(display.value);
 
