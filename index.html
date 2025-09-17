@@ -331,12 +331,7 @@ buttons.forEach(button => {
     if (value === 'C') {
       display.value = '';
     } else if (value === '=') {
-      try {
-      if (baseForExponent !== null) {
-          const exponent = parseFloat(display.value);
-          display.value = Math.pow(baseForExponent, exponent);
-          baseForExponent = null;
-        } else {
+      try { 
         display.value = eval(display.value);
         }
       } catch {
@@ -437,32 +432,6 @@ function handleStoOrRecall(event) {
 
   shiftMode = false; // Reset after use
   document.querySelector('.shift-btn-main').classList.remove('active-shift');
-}function handleStoOrRecall(event) {
-  if (event) event.preventDefault();
-
-  const display = document.getElementById('display');
-
-  if (shiftMode) {
-    // RCL behavior
-    if (memorySlot === null) {
-      alert("No value stored.");
-      return;
-    }
-    display.value += memorySlot;
-  } else {
-    // STO behavior
-    const value = parseFloat(display.value);
-    if (isNaN(value)) {
-      alert("Cannot store: display is not a valid number.");
-      return;
-    }
-    memorySlot = value;
-    alert(`Stored: ${value}`);
-  }
-
-  shiftMode = false; // Reset after use
-  document.querySelector('.shift-btn-main').classList.remove('active-shift');
-}
 </script>
 
     </div> <!-- This is the existing closing div for "calculator" -->
