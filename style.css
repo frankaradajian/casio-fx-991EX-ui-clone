@@ -218,6 +218,10 @@ body {
 }
 
 .shift-btn-main { grid-column: 1 / 2; color: #ffd700; }
+.active-shift {
+  background-color: orange;
+  color: white;
+}
 .alpha-btn-main { grid-column: 2 / 3; color: #ff69b4; }
 .menu-btn { grid-column: 5 / 6; flex-direction: column; line-height: 1.1; padding-top: 2px; }
 .on-btn-main { grid-column: 6 / 7; color: #fff; }

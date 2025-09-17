@@ -36,7 +36,7 @@
  <input type="text" id="display" />
 
         <div class="top-controls">
-            <button class="btn-main shift-btn-main">SHIFT</button>
+            <button class="btn-main shift-btn-main" onclick="toggleShift()">SHIFT</button>
             <button class="btn-main alpha-btn-main">ALPHA</button>
             <div class="nav-pad">
                 <button class="nav-up"></button>
@@ -159,7 +159,7 @@
         </div>
         <!-- Function Button Row 4 ("5th line" - STO, ENG, etc.) -->
         <div class="function-row function-row-cols-6 row5-buttons">
-            <button class="btn" onclick="storeValue()" data-value="">
+            <button class="btn" onclick="handleStoOrRecall()" data-value="">
                 <span class="shift-text-label">RECALL</span>
                 <!-- No Alpha label for STO from image -->
                 <span class="main-content">STO</span>
@@ -407,20 +407,57 @@ function calculateInverse(event) {
 </script>
 
 <script>
-    // Function: STORE (STO)
-function storeValue(event) {
+    // Function: STORE/RECALL (STO/RECALL)
+function handleStoOrRecall(event) {
   if (event) event.preventDefault();
 
   const display = document.getElementById('display');
-  const value = parseFloat(display.value);
 
-  if (isNaN(value)) {
-    alert("Cannot store: display is not a valid number.");
-    return;
+  if (shiftMode) {
+    // RCL behavior
+    if (memorySlot === null) {
+      alert("No value stored.");
+      return;
+    }
+    display.value += memorySlot;
+  } else {
+    // STO behavior
+    const value = parseFloat(display.value);
+    if (isNaN(value)) {
+      alert("Cannot store: display is not a valid number.");
+      return;
+    }
+    memorySlot = value;
+    alert(`Stored: ${value}`);
   }
 
-  memorySlot = value;
-  alert(`Stored: ${value}`);
+  shiftMode = false; // Reset after use
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}function handleStoOrRecall(event) {
+  if (event) event.preventDefault();
+
+  const display = document.getElementById('display');
+
+  if (shiftMode) {
+    // RCL behavior
+    if (memorySlot === null) {
+      alert("No value stored.");
+      return;
+    }
+    display.value += memorySlot;
+  } else {
+    // STO behavior
+    const value = parseFloat(display.value);
+    if (isNaN(value)) {
+      alert("Cannot store: display is not a valid number.");
+      return;
+    }
+    memorySlot = value;
+    alert(`Stored: ${value}`);
+  }
+
+  shiftMode = false; // Reset after use
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
 }
 </script>
 
