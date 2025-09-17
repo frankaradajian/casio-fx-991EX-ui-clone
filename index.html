@@ -128,7 +128,7 @@
 
         <!-- Function Button Row 3 ("4th line") -->
         <div class="function-row function-row-cols-6 row4-buttons">
-            <button class="btn" onclick="toggleNegate()" data-value="">
+            <button class="btn" onclick="toggleNegate()">
                 <span class="shift-text-label">log</span>
                 <span class="alpha-text-label">A</span>
                 <span class="main-content neg-symbol">(–)</span>
@@ -364,21 +364,18 @@ function toggleShift() {
   if (event) event.preventDefault();
 
   const display = document.getElementById('display');
-  let value = display.value;
+  let value = display.value.trim();
 
-  if (!value) return; // Nothing to negate
+  if (!value) return;
 
-  // Try to parse the current value
-  let number = parseFloat(value);
-
-  if (isNaN(number)) {
-    alert("Cannot negate: display is not a valid number.");
-    return;
+  // Check if already negated
+  if (value.startsWith('-(') && value.endsWith(')')) {
+    // Remove outer negation
+    display.value = value.slice(2, -1);
+  } else {
+    // Wrap in negation
+    display.value = `-(${value})`;
   }
-
-  // Flip the sign
-  number = -number;
-  display.value = number;
 }
 </script>
  
