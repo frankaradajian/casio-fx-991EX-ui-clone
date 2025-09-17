@@ -159,7 +159,7 @@
         </div>
         <!-- Function Button Row 4 ("5th line" - STO, ENG, etc.) -->
         <div class="function-row function-row-cols-6 row5-buttons">
-            <button class="btn">
+            <button class="btn" onclick="storeValue()" data-value="">
                 <span class="shift-text-label">RECALL</span>
                 <!-- No Alpha label for STO from image -->
                 <span class="main-content">STO</span>
@@ -313,8 +313,10 @@
             </button>
         </div>
 <script>
+let memorySlot = null;
 let display = document.getElementById('display');
 let buttons = document.querySelectorAll('.btn');
+let shiftMode = false;
 
 buttons.forEach(button => {
   button.addEventListener('click', () => {
@@ -342,6 +344,21 @@ buttons.forEach(button => {
     }
   });
 });
+</script>
+
+<script>
+function toggleShift() {
+  shiftMode = !shiftMode;
+  console.log("Shift mode:", shiftMode);
+
+  // Optional: visually highlight shift mode
+  const shiftButton = document.querySelector('.shift-btn-main');
+  if (shiftMode) {
+    shiftButton.classList.add('active-shift');
+  } else {
+    shiftButton.classList.remove('active-shift');
+  }
+}
 </script>
 
 <script>
@@ -386,6 +403,24 @@ function calculateInverse(event) {
   }
 
   display.value = 1 / value;
+}
+</script>
+
+<script>
+    // Function: STORE (STO)
+function storeValue(event) {
+  if (event) event.preventDefault();
+
+  const display = document.getElementById('display');
+  const value = parseFloat(display.value);
+
+  if (isNaN(value)) {
+    alert("Cannot store: display is not a valid number.");
+    return;
+  }
+
+  memorySlot = value;
+  alert(`Stored: ${value}`);
 }
 </script>
 
