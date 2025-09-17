@@ -13,7 +13,7 @@ body {
 .calculator {
     position: relative;
   /* other layout styles */
-    width: 600px; /* ← updated width for landscape */
+    width: 450px; /* ← updated width for landscape */
     height: 400px; /* ← updated width for landscape */
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* ← adjust based on your button layout */
@@ -96,7 +96,7 @@ body {
   position: absolute;
   top: 11px;
   right: 5px;
-  width: 360px; /* Adjust this to match mock screen width */
+  width: 600px; /* Adjust this to match mock screen width */
   height: 120px; /* Optional: tweak height for better fit */
   box-sizing: border-box;
   /* existing styles stay */

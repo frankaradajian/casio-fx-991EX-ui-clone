@@ -364,18 +364,43 @@ function toggleShift() {
   if (event) event.preventDefault();
 
   const display = document.getElementById('display');
-  let value = display.value.trim();
+  let expr = display.value.trim();
 
-  if (!value) return;
+  if (!expr) return;
 
-  // Check if already negated
-  if (value.startsWith('-(') && value.endsWith(')')) {
-    // Remove outer negation
-    display.value = value.slice(2, -1);
+  // Find the last operand or bracketed group
+  let lastChunk = '';
+  let rest = '';
+
+  // Case: ends with a bracketed group
+  if (expr.endsWith(')')) {
+    let depth = 0;
+    for (let i = expr.length - 1; i >= 0; i--) {
+      if (expr[i] === ')') depth++;
+      if (expr[i] === '(') depth--;
+      if (depth === 0) {
+        lastChunk = expr.slice(i);
+        rest = expr.slice(0, i);
+        break;
+      }
+    }
   } else {
-    // Wrap in negation
-    display.value = `-(${value})`;
+    // Case: ends with a number or variable
+    const match = expr.match(/(.+?)([0-9.]+|\w+)$/);
+    if (match) {
+      rest = match[1];
+      lastChunk = match[2];
+    }
   }
+
+  // Toggle negation
+  if (lastChunk.startsWith('-(') && lastChunk.endsWith(')')) {
+    lastChunk = lastChunk.slice(2, -1); // remove negation
+  } else {
+    lastChunk = `-(${lastChunk})`; // apply negation
+  }
+
+  display.value = rest + lastChunk;
 }
 </script>
  
