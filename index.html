@@ -126,7 +126,7 @@
 
         <!-- Function Button Row 3 ("4th line") -->
         <div class="function-row function-row-cols-6 row4-buttons">
-            <button class="btn" data-value="-">
+            <button class="btn" onclick="toggleNegate()" data-value="">
                 <span class="shift-text-label">log</span>
                 <span class="alpha-text-label">A</span>
                 <span class="main-content neg-symbol">(–)</span>
@@ -384,6 +384,30 @@ function prepareExponent(event) {
 
 </script>
 
+<script>
+   // Function: Aditive Inverse (-x)
+   function toggleNegate(event) {
+  if (event) event.preventDefault();
+
+  const display = document.getElementById('display');
+  let value = display.value;
+
+  if (!value) return; // Nothing to negate
+
+  // Try to parse the current value
+  let number = parseFloat(value);
+
+  if (isNaN(number)) {
+    alert("Cannot negate: display is not a valid number.");
+    return;
+  }
+
+  // Flip the sign
+  number = -number;
+  display.value = number;
+}
+</script>
+ 
 <script>
     // Function: Multiplicative Inverse (x⁻¹)
 function calculateInverse(event) {
