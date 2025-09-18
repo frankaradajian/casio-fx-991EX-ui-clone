@@ -99,7 +99,7 @@
                     </span>
                 </span>
             </button>
-            <button class="btn"> <!-- Square Root Button -->
+            <button class="btn shift-toggle-root" data-value="sqrt(" data-shift-value="cbrt(" onclick="handleRootToggle()"> <!-- Square Root Button -->
                 <span class="shift-text-label"><sup>3</sup>√<span class="sym-box-inline"></span></span>
                  <!-- No alpha label -->
                 <span class="main-content">√<span class="sym-box-inline"></span></span>
@@ -315,8 +315,8 @@
             </button>    
         </div> 
  <!-- END BUTTON SETUP -->  
-        
-<script> // FUNCTIONS SCRIPTS START HERE
+     
+<script>  // FUNCTIONS SCRIPTS START HERE  
 let memorySlot = null;
 let display = document.getElementById('display');
 let buttons = document.querySelectorAll('.btn');
@@ -344,6 +344,7 @@ buttons.forEach(button => {
 </script>
 
 <script>
+  // Function: toggleShift logics  
 function toggleShift() {
   shiftMode = !shiftMode;
   console.log("Shift mode:", shiftMode);
@@ -356,6 +357,11 @@ function toggleShift() {
     shiftButton.classList.remove('active-shift');
   }
 }
+</script>
+
+<script>
+   // Function: Squared root (√x)    
+   
 </script>
 
 <script>
