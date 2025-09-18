@@ -331,11 +331,16 @@ buttons.forEach(button => {
     if (value === 'C') {
       display.value = '';
     } else if (value === '=') {
-      try { 
-        display.value = eval(display.value);
+            try {
+            // Replace symbolic root functions with JavaScript equivalents
+              let expression = display.value
+                .replace(/(?<!\.)\bsqrt\(/g, 'Math.sqrt(')
+                .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(');
+
+      display.value = eval(expression);
       } catch {
-        display.value = 'Error';
-      }
+    display.value = 'Error';
+    }
     } else {
       display.value += value;
     }
@@ -361,7 +366,20 @@ function toggleShift() {
 
 <script>
    // Function: Squared root (√x)    
-   
+function handleRootToggle() {
+  const display = document.getElementById('display');
+  const rootButton = document.querySelector('.shift-toggle-root');
+
+  const value = shiftMode
+    ? rootButton.getAttribute('data-shift-value')
+    : rootButton.getAttribute('data-value');
+
+  display.value += value;
+
+  // Reset shift mode
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}  
 </script>
 
 <script>
