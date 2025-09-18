@@ -368,12 +368,45 @@ function toggleNegate(event) {
 
   if (!expr) return;
 
-  // If already wrapped in -(...), unwrap it
-  if (expr.startsWith('-(') && expr.endsWith(')')) {
-    display.value = expr.slice(2, -1);
-  } else {
-    display.value = `-(${expr})`;
+  let lastChunk = '';
+  let rest = '';
+
+  // Case: ends with a bracketed group
+  if (expr.endsWith(')')) {
+    let depth = 0;
+    for (let i = expr.length - 1; i >= 0; i--) {
+      if (expr[i] === ')') depth++;
+      if (expr[i] === '(') depth--;
+      if (depth === 0) {
+        lastChunk = expr.slice(i);
+        rest = expr.slice(0, i);
+        break;
+      }
+    }
   }
+
+  // Fallback: single number or variable
+  if (!lastChunk) {
+    const match = expr.match(/(.+?)([0-9.]+|\w+)$/);
+    if (match) {
+      rest = match[1];
+      lastChunk = match[2];
+    } else {
+      lastChunk = expr;
+      rest = '';
+    }
+  }
+
+  if (!lastChunk) return;
+
+  // Toggle negation
+  if (lastChunk.startsWith('-(') && lastChunk.endsWith(')')) {
+    lastChunk = lastChunk.slice(2, -1);
+  } else {
+    lastChunk = `-(${lastChunk})`;
+  }
+
+  display.value = rest + lastChunk;
 }
 </script>
  
