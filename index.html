@@ -99,12 +99,12 @@
                     </span>
                 </span>
             </button>
-            <button class="btn shift-toggle-root" data-value="sqrt(" data-shift-value="cbrt(" onclick="handleRootToggle()"> <!-- Square Root Button -->
+            <button class="btn shift-toggle-root" data-root="sqrt(" data-shift-root="cbrt(" onclick="handleRootToggle()"> <!-- Square Root Button -->
                 <span class="shift-text-label"><sup>3</sup>√<span class="sym-box-inline"></span></span>
                  <!-- No alpha label -->
                 <span class="main-content">√<span class="sym-box-inline"></span></span>
             </button>
-            <button class="btn"> <!-- x^2 Button -->
+            <button class="btn shift-toggle-power" data-power="**2" data-shift-power="**3" onclick="handlePowerToggle()"> <!-- x^2 Button -->
                 <span class="shift-text-label">x<sup>3</sup></span>
                 <span class="base-n-text-label">DEC</span> <!-- Top-right blue -->
                 <span class="main-content">x<sup>2</sup></span>
@@ -341,9 +341,8 @@ buttons.forEach(button => {
       } catch {
         display.value = 'Error';
       }
-    } else {
-      display.value += value;
-    }
+    }else { display.value += value;
+    } 
   });
 });
 </script>
@@ -371,8 +370,8 @@ function handleRootToggle() {
   const rootButton = document.querySelector('.shift-toggle-root');
 
   const value = shiftMode
-    ? rootButton.getAttribute('data-shift-value')
-    : rootButton.getAttribute('data-value');
+    ? rootButton.getAttribute('data-shift-root')
+    : rootButton.getAttribute('data-root');
 
   display.value += value;
 
@@ -380,6 +379,22 @@ function handleRootToggle() {
   shiftMode = false;
   document.querySelector('.shift-btn-main').classList.remove('active-shift');
 }  
+</script>
+
+<script>
+function handlePowerToggle() {
+  const display = document.getElementById('display');
+  const powerButton = document.querySelector('.shift-toggle-power');
+
+  const value = shiftMode
+    ? powerButton.getAttribute('data-shift-power')
+    : powerButton.getAttribute('data-power');
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
 </script>
 
 <script>
