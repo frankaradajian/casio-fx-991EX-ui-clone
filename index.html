@@ -120,7 +120,7 @@
                 <span class="main-content">LOG</span> <!-- Main label -->
             </button>
 
-            <button class="btn"> <!-- ln Button -->
+            <button class="btn shift-toggle-ln" data-ln="ln(" data-shift-exp="Math.E**" onclick="handleLnToggle()"> <!-- ln Button -->
                 <span class="shift-text-label"><i>e</i><sup><span class="sym-box-inline-sup"></span></sup></span>
                 <span class="base-n-text-label">OCT</span> <!-- Top-right blue -->
                 <span class="main-content">ln</span>
@@ -130,7 +130,7 @@
         <!-- Function Button Row 3 ("4th line") -->
         <div class="function-row function-row-cols-6 row4-buttons">
             <button class="btn" onclick="toggleNegate()">
-                <span class="shift-text-label">log</span>
+                <span class="shift-text-label"></span>
                 <span class="alpha-text-label">A</span>
                 <span class="main-content neg-symbol">(–)</span>
             </button>
@@ -295,14 +295,14 @@
                 </div>
                 <span class="main-content decimal-point">.</span
             </button>
-            <button class="btn btn-numeric"> <!-- x10^x button styled as numeric for color -->
+            <button class="btn shift-toggle-sci" onclick="handleSciToggle()"> <!-- x10^x button styled as numeric for color -->
                 <div class="labels-above">
                     <span class="shift-text-label">π</span>
                     <span class="alpha-text-label"><i>e</i></span>
                 </div>
                 <span class="main-content sci-notation-symbol">×10<sup>x</sup></span>
             </button>
-            <button class="btn btn-numeric"> <!-- Ans button styled as numeric for color -->
+            <button class="btn shift-toggle-ans" data-ans="ANS" data-shift-percent="/100" onclick="handleAnsToggle()"> <!-- Ans button styled as numeric for color -->
                 <div class="labels-above">
                     <span class="shift-text-label">%</span>
                 </div>
@@ -337,8 +337,8 @@ buttons.forEach(button => {
         let expression = display.value
           .replace(/(?<!\.)\bsqrt\(/g, 'Math.sqrt(')
           .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(')
-          .replace(/(?<!\.)\blog10\(/g, 'Math.log10(');
-
+          .replace(/(?<!\.)\blog10\(/g, 'Math.log10(')
+          .replace(/(?<!\.)\bln\(/g, 'Math.log(');
         display.value = eval(expression);
       } catch {
         display.value = 'Error';
@@ -435,6 +435,22 @@ function handleLogToggle() {
 }
 </script>
 
+<script>
+   // Function: Ln (lnx) 
+function handleLnToggle() {
+  const display = document.getElementById('display');
+  const lnButton = document.querySelector('.shift-toggle-ln');
+
+  const value = shiftMode
+    ? lnButton.getAttribute('data-shift-exp') // SHIFT → eˣ
+    : lnButton.getAttribute('data-ln');       // Default → ln(
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
 <script>
     // Function: Additive Inverse (-x)
 function toggleNegate(event) {
@@ -536,6 +552,46 @@ function handleStoOrRecall(event) {
 
   shiftMode = false; // Reset after use
   document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+    // Function: SCI (Scientific Notation)
+function handleSciToggle() {
+  const display = document.getElementById('display');
+
+  const value = shiftMode
+    ? Math.PI.toString() // SHIFT → insert π as a number
+    : '*10**';           // Default → scientific notation
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+    // Function: ANS (LAST RESULT)
+function handleAnsToggle() {
+  const display = document.getElementById('display');
+  const ansButton = document.querySelector('.shift-toggle-ans');
+
+  const value = shiftMode
+    ? ansButton.getAttribute('data-shift-percent') // SHIFT → %
+    : lastAnswer.toString();                        // Default → ANS
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+
+function insertAns() {
+  const display = document.getElementById('display');
+  if (lastAnswer !== '') {
+    display.value += lastAnswer.toString();
+  }
 }
 </script>
 
