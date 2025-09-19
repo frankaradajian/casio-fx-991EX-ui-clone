@@ -336,8 +336,9 @@ buttons.forEach(button => {
         // Replace symbolic root functions with JavaScript equivalents
         let expression = display.value
           .replace(/(?<!\.)\bsqrt\(/g, 'Math.sqrt(')
-          .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(');
+          .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(')
           .replace(/(?<!\.)\blog10\(/g, 'Math.log10(');
+
         display.value = eval(expression);
       } catch {
         display.value = 'Error';
