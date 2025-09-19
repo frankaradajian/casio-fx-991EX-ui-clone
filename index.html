@@ -99,26 +99,27 @@
                     </span>
                 </span>
             </button>
-            <button class="btn shift-toggle-root" data-root="sqrt(" data-shift-root="cbrt(" onclick="handleRootToggle()"> <!-- Square Root Button -->
+            <button class="btn shift-toggle-root" data-root="sqrt(" data-shift-root="cbrt(" onclick="handleRootToggle()"> <!--√x Square Root Button -->
                 <span class="shift-text-label"><sup>3</sup>√<span class="sym-box-inline"></span></span>
                  <!-- No alpha label -->
                 <span class="main-content">√<span class="sym-box-inline"></span></span>
             </button>
-            <button class="btn shift-toggle-power" data-power="**2" data-shift-power="**3" onclick="handlePowerToggle()"> <!-- x^2 Button -->
+            <button class="btn shift-toggle-power" data-power="**2" data-shift-power="**3" onclick="handlePowerToggle()"> <!-- x^2 Square Button -->
                 <span class="shift-text-label">x<sup>3</sup></span>
                 <span class="base-n-text-label">DEC</span> <!-- Top-right blue -->
                 <span class="main-content">x<sup>2</sup></span>
             </button>
-            <button class="btn" data-value="**"> <!-- x^□ (Exponent) Direct Button-- No Function needed -->
+            <button class="btn shift-toggle-exponent" data-power="**" data-shift-root="**(1/" onclick="handleExponentToggle()"> <!-- x^□ Exponent Button -->
                 <span class="shift-text-label"><sup><span class="sym-box-inline-sup"></span></sup>√x</span>
                 <span class="base-n-text-label">HEX</span> <!-- Top-right blue -->
                 <span class="main-content">x<sup><span class="sym-box-inline-sup"></span></sup></span>
             </button>
-            <button class="btn"> <!-- 10^□ Button -->
-                <span class="shift-text-label">10<sup>x</sup></span>
-                <span class="base-n-text-label">BIN</span> <!-- Top-right blue -->
-                <span class="main-content">10<sup><span class="sym-box-inline-sup"></span></sup></span>
+            <button class="btn shift-toggle-log" data-log="log10(" data-shift-power10="10**" onclick="handleLogToggle()">
+                <span class="shift-text-label">10<sup>x</sup></span> <!-- SHIFT label -->
+                <span class="base-n-text-label">BIN</span>
+                <span class="main-content">LOG</span> <!-- Main label -->
             </button>
+
             <button class="btn"> <!-- ln Button -->
                 <span class="shift-text-label"><i>e</i><sup><span class="sym-box-inline-sup"></span></sup></span>
                 <span class="base-n-text-label">OCT</span> <!-- Top-right blue -->
@@ -336,7 +337,7 @@ buttons.forEach(button => {
         let expression = display.value
           .replace(/(?<!\.)\bsqrt\(/g, 'Math.sqrt(')
           .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(');
-
+          .replace(/(?<!\.)\blog10\(/g, 'Math.log10(');
         display.value = eval(expression);
       } catch {
         display.value = 'Error';
@@ -363,8 +364,9 @@ function toggleShift() {
 }
 </script>
 
+  // ToggleShift Functions Scripts
 <script>
-   // Function: Squared root (√x)    
+  // Function: Squared root (√x)    
 function handleRootToggle() {
   const display = document.getElementById('display');
   const rootButton = document.querySelector('.shift-toggle-root');
@@ -382,6 +384,7 @@ function handleRootToggle() {
 </script>
 
 <script>
+  // Function: Square (x^2) 
 function handlePowerToggle() {
   const display = document.getElementById('display');
   const powerButton = document.querySelector('.shift-toggle-power');
@@ -398,7 +401,41 @@ function handlePowerToggle() {
 </script>
 
 <script>
-   // Function: Aditive Inverse (-x)
+  // Function: Exponent (x^□) 
+function handleExponentToggle() {
+  const display = document.getElementById('display');
+  const exponentButton = document.querySelector('.shift-toggle-exponent');
+
+  const value = shiftMode
+    ? exponentButton.getAttribute('data-shift-root') // root exponent
+    : exponentButton.getAttribute('data-power');     // normal exponent
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+     // Function: LOG (Logx)   
+function handleLogToggle() {
+  const display = document.getElementById('display');
+  const logButton = document.querySelector('.shift-toggle-log');
+
+  const value = shiftMode
+    ? logButton.getAttribute('data-shift-power10') // SHIFT → 10^x
+    : logButton.getAttribute('data-log');          // Default → log10(
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+    // Function: Additive Inverse (-x)
 function toggleNegate(event) {
   if (event) event.preventDefault();
 
