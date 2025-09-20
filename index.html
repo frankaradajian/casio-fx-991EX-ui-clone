@@ -34,10 +34,7 @@
 <!-- End of screen wrapper -->
 
 <!-- START BUTTON SETUP -->
-
- <input type="text" id="display" />
-
-        <div class="top-controls">
+         <div class="top-controls">
             <button class="btn-main shift-btn-main" onclick="toggleShift()">SHIFT</button>
             <button class="btn-main alpha-btn-main">ALPHA</button>
             <div class="nav-pad">
@@ -316,12 +313,13 @@
             </button>    
         </div> 
  <!-- END BUTTON SETUP -->  
-     
+ 
 <script>  // FUNCTIONS SCRIPTS START HERE  
 let memorySlot = null;
 let display = document.getElementById('display');
 let buttons = document.querySelectorAll('.btn');
 let shiftMode = false;
+let lastAnswer = '';
 
 buttons.forEach(button => {
   button.addEventListener('click', () => {
@@ -339,10 +337,13 @@ buttons.forEach(button => {
           .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(')
           .replace(/(?<!\.)\blog10\(/g, 'Math.log10(')
           .replace(/(?<!\.)\bln\(/g, 'Math.log(');
+        
+        let result = eval(expression);  
         display.value = eval(expression);
+        lastAnswer = result; 
       } catch {
         display.value = 'Error';
-      }
+     }
     }else { display.value += value;
     } 
   });
@@ -365,7 +366,6 @@ function toggleShift() {
 }
 </script>
 
-  // ToggleShift Functions Scripts
 <script>
   // Function: Squared root (√x)    
 function handleRootToggle() {
@@ -480,6 +480,11 @@ function toggleNegate(event) {
 
   // Fallback: single number or variable
   if (!lastChunk) {
+  // If the entire expression is a number or already a result
+  if (/^-?\d+(\.\d+)?$/.test(expr)) {
+    lastChunk = expr;
+    rest = '';
+  } else {
     const match = expr.match(/(.+?)([0-9.]+|\w+)$/);
     if (match) {
       rest = match[1];
@@ -489,6 +494,7 @@ function toggleNegate(event) {
       rest = '';
     }
   }
+}
 
   if (!lastChunk) return;
 
