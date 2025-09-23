@@ -11,11 +11,7 @@ body {
 }
 
 .calculator {
-    position: relative;
-  /* other layout styles */
-    width: 90vw; /* 90% of viewport width */
-    max-width: 800px;
-    height: auto; /* Let it grow with content */
+    width: 330px;
     background-color: #333740;
     background-image: linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02)),
                       linear-gradient(45deg, rgba(255,255,255,0.02) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.02) 75%, rgba(255,255,255,0.02));
@@ -25,11 +21,6 @@ body {
     padding: 18px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 0 0 3px #2a2e35;
     color: white;
-      /* Now insert your new layout commands */
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* aligns children to the left */
-  padding: 20px;
 }
 
 .header {
@@ -81,22 +72,7 @@ body {
     box-shadow: inset 0 0 4px rgba(0,0,0,0.6);
 }
 
-.screen-wrapper {
-  position: absolute; /* Changed from relative */
-  top: 12px;           /* Adjust as needed */
-  right: 12px;         /* Adjust as needed */
-  width: 360px;
-  z-index: 10;         /* Ensure it sits above background layers */
-}
-
-.display-area { 
-  position: absolute;
-  top: 11px;
-  right: 5px;
-  width: 380px; /* Adjust this to match mock screen width */
-  height: 120px; /* Optional: tweak height for better fit */
-  box-sizing: border-box;
-  /* existing styles stay */
+.display-area {
     background: linear-gradient(to bottom, #d0e0d0, #b8c8b8);
     border: 1px solid #333;
     border-top-color: #555;
@@ -138,64 +114,6 @@ body {
     min-height: 17px;
 }
 
-.live-display {
-  width: 98%;
-  height: 100%;
-  font-size: 15px;            /* Adjust for readability */
-  text-align: right;         /* right the text horizontally */
-  font-family: 'Roboto Mono', monospace; /* Matches your theme */
-  background: linear-gradient(to bottom, #d0e0d0, #b8c8b8); /* Match .display-area */
-  /* rest stays the same */
-  border: none;               /* Removes input border */
-  color: #1a2a1a;             /* Matches your display text color */
-  padding: 0 10px;            /* Optional: horizontal breathing room */
-  pointer-events: none;       /* Prevents accidental clicks */
-  /* New additions for realism */
-  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-}
-
-<<<<<<< HEAD
-=======
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 columns for full layout */
-  gap: 10px;
-  margin-top: 20px;
-  width: 100%;
-}
-
->>>>>>> 029dee9b431ad9df321577d8cdfaa22f0396d05f
-.btn-numeric {
-  background-color: #303030; /* Dark gray Casio-style */
-  color: #e0e0e0;            /* Light gray for main label */
-  border: 1px solid #252525;
-  box-shadow: 0 2px 0 #1a1a1a, inset 0 1px 0 rgba(255,255,255,0.05);
-  font-family: 'Roboto Mono', monospace;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.1s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  width: 50px;
-  margin: 4px;
-  padding: 4px;
-}
-
-.labels-above {
-  font-size: 0.6em;
-  opacity: 0.8;
-  margin-bottom: 2px;
-}
-
-.main-content {
-  font-size: 1em;
-  font-weight: bold;
-}
-
 .top-controls {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -226,10 +144,6 @@ body {
 }
 
 .shift-btn-main { grid-column: 1 / 2; color: #ffd700; }
-.active-shift {
-  background-color: orange;
-  color: white;
-}
 .alpha-btn-main { grid-column: 2 / 3; color: #ff69b4; }
 .menu-btn { grid-column: 5 / 6; flex-direction: column; line-height: 1.1; padding-top: 2px; }
 .on-btn-main { grid-column: 6 / 7; color: #fff; }
@@ -293,27 +207,11 @@ body {
 .nav-left::after { content: ""; width:0; height:0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 7px solid #ccc;}
 .nav-right::after { content: ""; width:0; height:0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid #ccc;}
 
-<<<<<<< HEAD
-/* Spacer button */
-.btn.spacer {
-  width: 150px;
-  background: transparent;
-  pointer-events: none;
-}
-/* Function rows */
-=======
->>>>>>> 029dee9b431ad9df321577d8cdfaa22f0396d05f
 .function-row {
     display: grid;
     gap: 8px;
     margin-top: 10px;
 }
-<<<<<<< HEAD
-.function-row-cols-10 {
-  grid-template-columns: repeat(10, 1fr);
-}
-=======
->>>>>>> 029dee9b431ad9df321577d8cdfaa22f0396d05f
 .function-row-cols-4 {
     grid-template-columns: repeat(4, 1fr);
 }
@@ -584,7 +482,7 @@ sup > .sym-box-inline, .main-content sup > .sym-box-inline { transform: translat
 }
 
 /* Override for row 5 buttons that don't have alpha label for centering main content better */
-.row5-buttons .btn:not(:has(.alpha-text-label)) .shift-text-label ~ .main-content {margin-top: 14px;
+.row5-buttons .btn:not(:has(.alpha-text-label)) .shift-text-label ~ .main-content {
      /* If only shift label, the margin-top: 14px still applies which is fine */
 }
 .row5-buttons .btn:not(:has(.shift-text-label)):not(:has(.alpha-text-label)) .main-content {
