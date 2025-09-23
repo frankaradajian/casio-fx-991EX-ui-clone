@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casio fx-991EX UI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="calculator">
+        <div class="header">
+            <div class="brand">
+                <span class="casio-logo">CASIO</span>
+                <span class="model-name">fx-991EX</span>
+                <span class="classwiz-logo">CLASSWIZ</span>
+            </div>
+            <div class="solar-panel"></div>
+        </div>
+
+        <!-- Start of screen wrapper -->
+<div class="screen-wrapper">
+
+  <div class="mock-screen">
+    <div class="display-area">
+      <div class="secondary-display">SHIFT ALPHA M D MATH</div>
+      <div class="main-display">
+        <input type="text" id="display" class="live-display" readonly>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- End of screen wrapper -->
+
+<!-- START BUTTON SETUP -->
+         <div class="top-controls">
+            <button class="btn-main shift-btn-main" onclick="toggleShift()">SHIFT</button>
+            <button class="btn-main alpha-btn-main">ALPHA</button>
+            <div class="nav-pad">
+                <button class="nav-up"></button>
+                <button class="nav-left"></button>
+                <button class="nav-center"></button>
+                <button class="nav-right"></button>
+                <button class="nav-down"></button>
+            </div>
+            <button class="btn menu-btn">
+                <span class="shift-text-label">SETUP</span>
+                <span class="main-content">MENU</span>
+            </button>
+            <button class="btn-main on-btn-main">ON</button>
+        </div>
+
+        <!-- Function Button Row 1 -->
+        <div class="function-row function-row-cols-10">
+            <button class="btn optn-btn">
+                <span class="shift-text-label">QR</span>
+                <span class="main-content">OPTN</span>
+            </button>
+            <button class="btn calc-btn">
+                <span class="shift-text-label">SOLVE</span>
+                <span class="alpha-text-label">=</span> <!-- Stays top-right -->
+                <span class="main-content">CALC</span>
+            </button>
+            <button class="btn integration-btn-user">
+                <span class="shift-text-label"><i>d/dx</i></span>
+                <span class="alpha-text-label">:</span> <!-- Stays top-right -->
+                <span class="main-content">∫</span>
+            </button>
+            <button class="btn log-base-sum-btn">
+                <span class="shift-text-label">Σ</span>
+                 <!-- No alpha label for this one based on previous steps -->
+                <span class="main-content">log<sub class="sym-box-sub"></sub><span class="sym-box-main"></span></span>
+            </button>
+            <button class="btn spacer"></button>
+            <button class="btn btn-numeric"data-value="7">
+                <div class="labels-above">
+                    <span class="shift-text-label">CONST</span>
+                </div>
+                <div class="main-content">7</div>
+            </button>
+            <button class="btn btn-numeric"data-value="8">
+                <div class="labels-above">                    
+                    <span class="shift-text-label">CONV</span>
+                </div>    
+                <div class="main-content">8</div>
+            </button>
+            <button class="btn btn-numeric"data-value="9">
+                <div class="labels-above">
+                    <span class="shift-text-label">RESET</span>
+                </div>
+                <div class="main-content">9</div>
+            </button>
+            <button class="btn btn-control-del"data-value="C">
+                <div class="labels-above">
+                    <span class="shift-text-label">INS</span>
+                    <span class="alpha-text-label">UNDO</span>
+                </div>
+                <div class="main-content">DEL</div>
+            </button>
+            <button class="btn btn-control-ac">
+                <div class="labels-above">
+                    <span class="shift-text-label">OFF</span>
+                </div>
+                <span class="main-content">AC</span>
+            </button>
+        </div>
+
+        <!-- Function Button Row 2 ("3rd line") -->
+        <div class="function-row function-row-cols-6">
+            <button class="btn"> <!-- Fraction Button -->
+                <span class="shift-text-label">
+                    <span class="sym-mixed-fraction">
+                        <span class="sym-box whole"></span>
+                        <span class="sym-fraction inline">
+                            <span class="sym-box num"></span>
+                            <span class="sym-line"></span>
+                            <span class="sym-box den"></span>
+                        </span>
+                    </span>
+                </span>
+                <!-- No alpha label for this one -->
+                <span class="main-content">
+                    <span class="sym-fraction">
+                        <span class="sym-box num"></span>
+                        <span class="sym-line"></span>
+                        <span class="sym-box den"></span>
+                    </span>
+                </span>
+            </button>
+            <button class="btn shift-toggle-root" data-root="sqrt(" data-shift-root="cbrt(" onclick="handleRootToggle()"> <!--√x Square Root Button -->
+                <span class="shift-text-label"><sup>3</sup>√<span class="sym-box-inline"></span></span>
+                 <!-- No alpha label -->
+                <span class="main-content">√<span class="sym-box-inline"></span></span>
+            </button>
+            <button class="btn shift-toggle-power" data-power="**2" data-shift-power="**3" onclick="handlePowerToggle()"> <!-- x^2 Square Button -->
+                <span class="shift-text-label">x<sup>3</sup></span>
+                <span class="base-n-text-label">DEC</span> <!-- Top-right blue -->
+                <span class="main-content">x<sup>2</sup></span>
+            </button>
+            <button class="btn shift-toggle-exponent" data-power="**" data-shift-root="**(1/" onclick="handleExponentToggle()"> <!-- x^□ Exponent Button -->
+                <span class="shift-text-label"><sup><span class="sym-box-inline-sup"></span></sup>√x</span>
+                <span class="base-n-text-label">HEX</span> <!-- Top-right blue -->
+                <span class="main-content">x<sup><span class="sym-box-inline-sup"></span></sup></span>
+            </button>
+            <button class="btn shift-toggle-log" data-log="log10(" data-shift-power10="10**" onclick="handleLogToggle()">
+                <span class="shift-text-label">10<sup>x</sup></span> <!-- SHIFT label -->
+                <span class="base-n-text-label">BIN</span>
+                <span class="main-content">LOG</span> <!-- Main label -->
+            </button>
+
+            <button class="btn shift-toggle-ln" data-ln="ln(" data-shift-exp="Math.E**" onclick="handleLnToggle()"> <!-- ln Button -->
+                <span class="shift-text-label"><i>e</i><sup><span class="sym-box-inline-sup"></span></sup></span>
+                <span class="base-n-text-label">OCT</span> <!-- Top-right blue -->
+                <span class="main-content">ln</span>
+            </button>
+        </div>
+
+        <!-- Function Button Row 3 ("4th line") -->
+        <div class="function-row function-row-cols-6 row4-buttons">
+            <button class="btn" onclick="toggleNegate()">
+                <span class="shift-text-label"></span>
+                <span class="alpha-text-label">A</span>
+                <span class="main-content neg-symbol">(–)</span>
+            </button>
+            <button class="btn">
+                <span class="shift-text-label">FACT</span>
+                <span class="alpha-text-label">B</span>
+                <span class="main-content dms-symbol">° ′ ″</span>
+            </button>
+            <button class="btn" onclick="calculateInverse()" data-value="">
+                <span class="shift-text-label">x!</span>
+                <span class="alpha-text-label">C</span>
+                <span class="main-content">x<sup>-1</sup></span>
+            </button>
+            <button class="btn">
+                <span class="shift-text-label">sin<sup>-1</sup></span>
+                <span class="alpha-text-label">D</span>
+                <span class="main-content">sin</span>
+            </button>
+            <button class="btn">
+                <span class="shift-text-label">cos<sup>-1</sup></span>
+                <span class="alpha-text-label">E</span>
+                <span class="main-content">cos</span>
+            </button>
+            <button class="btn">
+                <span class="shift-text-label">tan<sup>-1</sup></span>
+                <span class="alpha-text-label">F</span>
+                <span class="main-content">tan</span>
+            </button>
+        </div>
+        <!-- Function Button Row 4 ("5th line" - STO, ENG, etc.) -->
+        <div class="function-row function-row-cols-6 row5-buttons">
+            <button class="btn" onclick="handleStoOrRecall()" data-value="">
+                <span class="shift-text-label">RECALL</span>
+                <!-- No Alpha label for STO from image -->
+                <span class="main-content">STO</span>
+            </button>
+            <button class="btn">
+                <span class="shift-text-label">∠</span>
+                <!-- No explicit Alpha label, but has complex 'i' -->
+                <span class="main-content">ENG <span class="complex-i">i</span></span>
+            </button>
+            <button class="btn" data-value="(">
+                <span class="shift-text-label">Abs</span>
+                <!-- No Alpha label for ( -->
+                <span class="main-content paren-symbol">(</span>
+            </button>
+            <button class="btn" data-value=")">
+                <span class="shift-text-label">,</span>
+                <span class="alpha-text-label">X</span>
+                <span class="main-content paren-symbol">)</span>
+            </button>
+            <button class="btn">
+                <span class="shift-text-label s-d-shift-label">a <sup>b</sup>/<sub>c</sub> ↔ <sup>d</sup>/<sub>c</sub></span>
+                <span class="alpha-text-label">Y</span>
+                <span class="main-content s-d-symbol">S↔D</span>
+            </button>
+            <button class="btn">
+                <span class="shift-text-label">M-</span>
+                <span class="alpha-text-label">M</span>
+                <span class="main-content">M+</span>
+            </button>
+        </div>
+
+        <!-- Number Pad / Control Row 1 ("6th line" - 7,8,9,DEL,AC) -->
+        <div class="function-row number-pad-row">
+            <button class="btn btn-numeric"data-value="7">
+                <div class="labels-above">
+                    <span class="shift-text-label">CONST</span>
+                </div>
+                <div class="main-content">7</div>
+            </button>
+            <button class="btn btn-numeric"data-value="8">
+                <div class="labels-above">                    
+                    <span class="shift-text-label">CONV</span>
+                </div>    
+                <div class="main-content">8</div>
+            </button>
+            <button class="btn btn-numeric"data-value="9">
+                <div class="labels-above">
+                    <span class="shift-text-label">RESET</span>
+                </div>
+                <div class="main-content">9</div>
+            </button>
+            <button class="btn btn-control-del"data-value="C">
+                <div class="labels-above">
+                    <span class="shift-text-label">INS</span>
+                    <span class="alpha-text-label">UNDO</span>
+                </div>
+                <div class="main-content">DEL</div>
+            </button>
+            <button class="btn btn-control-ac">
+                <div class="labels-above">
+                    <span class="shift-text-label">OFF</span>
+                </div>
+                <span class="main-content">AC</span>
+            </button>
+        </div>
+
+        <!-- Number Pad Row 2 ("7th line" - 4,5,6,×,÷) -->
+        <div class="function-row number-pad-row"> <!-- Using function-row for consistency, specific grid in CSS -->
+            <!-- No labels above for 4, 5, 6 -->
+            <button class="btn btn-numeric" data-value="4">
+                <span class="main-content">4</span>
+            </button>
+            <button class="btn btn-numeric" data-value="5">
+                <span class="main-content">5</span>
+            </button>
+            <button class="btn btn-numeric" data-value="6">
+                <span class="main-content">6</span>
+            </button>
+            <button class="btn btn-operator" data-value="*">
+                <div class="labels-above">
+                    <span class="shift-text-label">nPr</span>
+                </div>
+                <span class="main-content op-symbol">×</span>
+            </button>
+            <button class="btn btn-operator" data-value="/">
+                <div class="labels-above">
+                    <span class="shift-text-label">nCr</span>
+                </div>
+                <span class="main-content op-symbol">÷</span>
+            </button>
+        </div>
+
+        <!-- Number Pad Row 3 ("8th line" - 1,2,3,+,−) -->
+        <div class="function-row number-pad-row">
+            <button class="btn btn-numeric" data-value="1">
+               <span class="main-content">1</span>
+            </button>
+            <button class="btn btn-numeric" data-value="2">
+                <span class="main-content">2</span>
+            </button>
+            <button class="btn btn-numeric" data-value="3">
+                <span class="main-content">3</span>
+            </button>
+            <button class="btn btn-operator" data-value="+">
+                <div class="labels-above">
+                    <span class="shift-text-label">Pol</span>
+                </div>
+               <span class="main-content op-symbol">+</span>
+            </button>
+            <button class="btn btn-operator" data-value="-">
+                <div class="labels-above">
+                    <span class="shift-text-label">Rec</span>
+                </div>
+                <span class="main-content op-symbol op-minus">−</span>
+            </button>
+        </div>
+
+        <!-- Number Pad Row 4 ("9th line" - 0,.,x10^x,Ans,=) -->
+        <div class="function-row number-pad-row">
+            <button class="btn btn-numeric" data-value="0">
+                <div class="labels-above">
+                    <span class="shift-text-label">Rnd</span>
+                </div>
+                <span class="main-content">0</span>
+            </button>
+            <button class="btn btn-numeric" data-value="."> <!-- Decimal button styled as numeric -->
+                <div class="labels-above">
+                    <span class="shift-text-label">Ran#</span>
+                    <span class="alpha-text-label">RanInt</span>
+                </div>
+                <span class="main-content decimal-point">.</span
+            </button>
+            <button class="btn shift-toggle-sci" onclick="handleSciToggle()"> <!-- x10^x button styled as numeric for color -->
+                <div class="labels-above">
+                    <span class="shift-text-label">π</span>
+                    <span class="alpha-text-label"><i>e</i></span>
+                </div>
+                <span class="main-content sci-notation-symbol">×10<sup>x</sup></span>
+            </button>
+            <button class="btn shift-toggle-ans" data-ans="ANS" data-shift-percent="/100" onclick="handleAnsToggle()"> <!-- Ans button styled as numeric for color -->
+                <div class="labels-above">
+                    <span class="shift-text-label">%</span>
+                </div>
+                <span class="main-content">Ans</span>
+            </button>
+            <button class="btn btn-operator btn-equals" data-value="="> <!-- Equals button with operator style -->
+                <div class="labels-above">
+                    <span class="shift-text-label">≈</span>
+                </div>
+                <span class="main-content op-symbol">=</span>  
+            </button>    
+        </div> 
+ <!-- END BUTTON SETUP -->  
+ 
+<script>  // FUNCTIONS SCRIPTS START HERE  
+let memorySlot = null;
+let display = document.getElementById('display');
+let buttons = document.querySelectorAll('.btn');
+let shiftMode = false;
+let lastAnswer = '';
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const value = button.getAttribute('data-value');
+
+    if (!value) return; 
+
+    if (value === 'C') {
+      display.value = '';
+    } else if (value === '=') {
+      try {
+        // Replace symbolic root functions with JavaScript equivalents
+        let expression = display.value
+          .replace(/(?<!\.)\bsqrt\(/g, 'Math.sqrt(')
+          .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(')
+          .replace(/(?<!\.)\blog10\(/g, 'Math.log10(')
+          .replace(/(?<!\.)\bln\(/g, 'Math.log(');
+        
+        let result = eval(expression);  
+        display.value = eval(expression);
+        lastAnswer = result; 
+      } catch {
+        display.value = 'Error';
+     }
+    }else { display.value += value;
+    } 
+  });
+});
+</script>
+
+<script>
+  // Function: toggleShift logics  
+function toggleShift() {
+  shiftMode = !shiftMode;
+  console.log("Shift mode:", shiftMode);
+
+  // Optional: visually highlight shift mode
+  const shiftButton = document.querySelector('.shift-btn-main');
+  if (shiftMode) {
+    shiftButton.classList.add('active-shift');
+  } else {
+    shiftButton.classList.remove('active-shift');
+  }
+}
+</script>
+
+<script>
+  // Function: Squared root (√x)    
+function handleRootToggle() {
+  const display = document.getElementById('display');
+  const rootButton = document.querySelector('.shift-toggle-root');
+
+  const value = shiftMode
+    ? rootButton.getAttribute('data-shift-root')
+    : rootButton.getAttribute('data-root');
+
+  display.value += value;
+
+  // Reset shift mode
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}  
+</script>
+
+<script>
+  // Function: Square (x^2) 
+function handlePowerToggle() {
+  const display = document.getElementById('display');
+  const powerButton = document.querySelector('.shift-toggle-power');
+
+  const value = shiftMode
+    ? powerButton.getAttribute('data-shift-power')
+    : powerButton.getAttribute('data-power');
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+  // Function: Exponent (x^□) 
+function handleExponentToggle() {
+  const display = document.getElementById('display');
+  const exponentButton = document.querySelector('.shift-toggle-exponent');
+
+  const value = shiftMode
+    ? exponentButton.getAttribute('data-shift-root') // root exponent
+    : exponentButton.getAttribute('data-power');     // normal exponent
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+     // Function: LOG (Logx)   
+function handleLogToggle() {
+  const display = document.getElementById('display');
+  const logButton = document.querySelector('.shift-toggle-log');
+
+  const value = shiftMode
+    ? logButton.getAttribute('data-shift-power10') // SHIFT → 10^x
+    : logButton.getAttribute('data-log');          // Default → log10(
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+   // Function: Ln (lnx) 
+function handleLnToggle() {
+  const display = document.getElementById('display');
+  const lnButton = document.querySelector('.shift-toggle-ln');
+
+  const value = shiftMode
+    ? lnButton.getAttribute('data-shift-exp') // SHIFT → eˣ
+    : lnButton.getAttribute('data-ln');       // Default → ln(
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+<script>
+    // Function: Additive Inverse (-x)
+function toggleNegate(event) {
+  if (event) event.preventDefault();
+
+  const display = document.getElementById('display');
+  let expr = display.value.trim();
+
+  if (!expr) return;
+
+  let lastChunk = '';
+  let rest = '';
+
+  // Case: ends with a bracketed group
+  if (expr.endsWith(')')) {
+    let depth = 0;
+    for (let i = expr.length - 1; i >= 0; i--) {
+      if (expr[i] === ')') depth++;
+      if (expr[i] === '(') depth--;
+      if (depth === 0) {
+        lastChunk = expr.slice(i);
+        rest = expr.slice(0, i);
+        break;
+      }
+    }
+  }
+
+  // Fallback: single number or variable
+  if (!lastChunk) {
+  // If the entire expression is a number or already a result
+  if (/^-?\d+(\.\d+)?$/.test(expr)) {
+    lastChunk = expr;
+    rest = '';
+  } else {
+    const match = expr.match(/(.+?)([0-9.]+|\w+)$/);
+    if (match) {
+      rest = match[1];
+      lastChunk = match[2];
+    } else {
+      lastChunk = expr;
+      rest = '';
+    }
+  }
+}
+
+  if (!lastChunk) return;
+
+  // Toggle negation
+  if (lastChunk.startsWith('-(') && lastChunk.endsWith(')')) {
+    lastChunk = lastChunk.slice(2, -1);
+  } else {
+    lastChunk = `-(${lastChunk})`;
+  }
+
+  display.value = rest + lastChunk;
+}
+</script>
+ 
+<script>
+    // Function: Multiplicative Inverse (x⁻¹)
+function calculateInverse(event) {
+  if (event) event.preventDefault();
+
+  const display = document.getElementById('display');
+  const value = parseFloat(display.value);
+
+  if (isNaN(value)) {
+    alert("Please enter a valid number.");
+    return;
+  }
+
+  if (value === 0) {
+    alert("Error: Division by zero.");
+    return;
+  }
+
+  display.value = 1 / value;
+}
+</script>
+
+<script>
+    // Function: STORE/RECALL (STO/RECALL)
+function handleStoOrRecall(event) {
+  if (event) event.preventDefault();
+
+  const display = document.getElementById('display');
+
+  if (shiftMode) {
+    // RCL behavior
+    if (memorySlot === null) {
+      alert("No value stored.");
+      return;
+    }
+    display.value += memorySlot;
+  } else {
+    // STO behavior
+    const value = parseFloat(display.value);
+    if (isNaN(value)) {
+      alert("Cannot store: display is not a valid number.");
+      return;
+    }
+    memorySlot = value;
+    alert(`Stored: ${value}`);
+  }
+
+  shiftMode = false; // Reset after use
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+    // Function: SCI (Scientific Notation)
+function handleSciToggle() {
+  const display = document.getElementById('display');
+
+  const value = shiftMode
+    ? Math.PI.toString() // SHIFT → insert π as a number
+    : '*10**';           // Default → scientific notation
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+</script>
+
+<script>
+    // Function: ANS (LAST RESULT)
+function handleAnsToggle() {
+  const display = document.getElementById('display');
+  const ansButton = document.querySelector('.shift-toggle-ans');
+
+  const value = shiftMode
+    ? ansButton.getAttribute('data-shift-percent') // SHIFT → %
+    : lastAnswer.toString();                        // Default → ANS
+
+  display.value += value;
+
+  shiftMode = false;
+  document.querySelector('.shift-btn-main').classList.remove('active-shift');
+}
+
+function insertAns() {
+  const display = document.getElementById('display');
+  if (lastAnswer !== '') {
+    display.value += lastAnswer.toString();
+  }
+}
+</script>
+
+    </div> <!-- This is the existing closing div for "calculator" -->
+</body>
+</html>
