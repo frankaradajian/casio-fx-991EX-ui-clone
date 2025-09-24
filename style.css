@@ -286,6 +286,7 @@ body {
 /* === Calculator Button Grid Layout === */
 .button-grid {
   display: grid;
+  grid-auto-rows: minmax(50px, auto); /* 👈 This is the magic */
   grid-template-columns: repeat(12, 1fr); /* Flexible 12-column layout */
   gap: 5px;
 }
