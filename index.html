@@ -50,7 +50,9 @@
             </button>
             <button class="btn-main on-btn-main">ON</button>
         </div>
-
+        </div> <!-- This closes the previous button group -->
+        
+        <div class="button-grid">
         <!-- Function Button Row 1 -->
           <div class="function-row function-row-cols-10">
             <button class="btn optn-btn">
@@ -310,7 +312,8 @@
         </div>
 
         <!-- Number Pad Row 4 ("9th line" - 0,.,x10^x,Ans,=) -->
-        <div class="function-row number-pad-row">
+        <div class="function-row function-row-cols-6 number-pad-row">
+         <button class="btn spacer-btn" disabled aria-hidden="true"></button>
             <button class="btn btn-numeric" data-value="0">
                 <div class="labels-above">
                     <span class="shift-text-label">Rnd</span>
