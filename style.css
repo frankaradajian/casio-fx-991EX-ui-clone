@@ -155,17 +155,7 @@ body {
   border-radius: 4px;
 }
 
-<<<<<<< HEAD
-=======
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 columns for full layout */
-  gap: 10px;
-  margin-top: 20px;
-  width: 100%;
-}
 
->>>>>>> 029dee9b431ad9df321577d8cdfaa22f0396d05f
 .btn-numeric {
   background-color: #303030; /* Dark gray Casio-style */
   color: #e0e0e0;            /* Light gray for main label */
@@ -293,27 +283,51 @@ body {
 .nav-left::after { content: ""; width:0; height:0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-right: 7px solid #ccc;}
 .nav-right::after { content: ""; width:0; height:0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 7px solid #ccc;}
 
-<<<<<<< HEAD
-/* Spacer button */
-.btn.spacer {
-  width: 150px;
-  background: transparent;
+/* === Calculator Button Grid Layout === */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Flexible 12-column layout */
+  gap: 5px;
+}
+
+.function-row-cols-4,
+.function-row-cols-5,
+.function-row-cols-6,
+.function-row-cols-10,
+.function-row-cols-12 {
+  display: contents; /* Let buttons inherit grid from .button-grid */
+}
+
+.spacer-btn {
+  visibility: hidden;
   pointer-events: none;
 }
-/* Function rows */
-=======
->>>>>>> 029dee9b431ad9df321577d8cdfaa22f0396d05f
+
+@media (max-width: 600px) {
+  .button-grid {
+    grid-template-columns: repeat(6, 1fr); /* Collapse to 6 columns on small screens */
+    gap: 4px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+
+  .main-content {
+    font-size: 1rem;
+  }
+}
+
+
 .function-row {
     display: grid;
     gap: 8px;
     margin-top: 10px;
 }
-<<<<<<< HEAD
 .function-row-cols-10 {
   grid-template-columns: repeat(10, 1fr);
 }
-=======
->>>>>>> 029dee9b431ad9df321577d8cdfaa22f0396d05f
 .function-row-cols-4 {
     grid-template-columns: repeat(4, 1fr);
 }

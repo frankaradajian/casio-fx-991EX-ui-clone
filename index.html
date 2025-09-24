@@ -34,24 +34,24 @@
 <!-- End of screen wrapper -->
 
 <!-- START BUTTON SETUP -->
-         <div class="top-controls">
+        <div class="top-controls">
             <button class="btn-main shift-btn-main" onclick="toggleShift()">SHIFT</button>
             <button class="btn-main alpha-btn-main">ALPHA</button>
-            <div class="nav-pad">
-                <button class="nav-up"></button>
-                <button class="nav-left"></button>
-                <button class="nav-center"></button>
-                <button class="nav-right"></button>
-                <button class="nav-down"></button>
-            </div>
+          <div class="nav-pad">
+             <button class="nav-up"></button>
+             <button class="nav-left"></button>
+             <button class="nav-center"></button>
+             <button class="nav-right"></button>
+             <button class="nav-down"></button>
+          </div>
             <button class="btn menu-btn">
                 <span class="shift-text-label">SETUP</span>
                 <span class="main-content">MENU</span>
             </button>
             <button class="btn-main on-btn-main">ON</button>
         </div>
-        </div> <!-- This closes the previous button group -->
-        
+     <!-- This closes the navigation button group -->
+     <!-- This opens the function-numeric button group -->       
         <div class="button-grid">
         <!-- Function Button Row 1 -->
           <div class="function-row function-row-cols-10">
@@ -106,10 +106,10 @@
                 </div>
                 <span class="main-content">AC</span>
             </button>
-        </div>
+          </div>
 
         <!-- Function Button Row 2 ("3rd line") -->
-        <div class="function-row function-row-cols-6">
+          <div class="function-row function-row-cols-6">
             <button class="btn"> <!-- Fraction Button -->
                 <span class="shift-text-label">
                     <span class="sym-mixed-fraction">
@@ -156,10 +156,10 @@
                 <span class="base-n-text-label">OCT</span> <!-- Top-right blue -->
                 <span class="main-content">ln</span>
             </button>
-        </div>
+          </div>
 
         <!-- Function Button Row 3 ("4th line") -->
-        <div class="function-row function-row-cols-6 row4-buttons">
+          <div class="function-row function-row-cols-6 row4-buttons">
             <button class="btn" onclick="toggleNegate()">
                 <span class="shift-text-label"></span>
                 <span class="alpha-text-label">A</span>
@@ -190,9 +190,9 @@
                 <span class="alpha-text-label">F</span>
                 <span class="main-content">tan</span>
             </button>
-        </div>
+          </div>
         <!-- Function Button Row 4 ("5th line" - STO, ENG, etc.) -->
-        <div class="function-row function-row-cols-6 row5-buttons">
+          <div class="function-row function-row-cols-6 row5-buttons">
             <button class="btn" onclick="handleStoOrRecall()" data-value="">
                 <span class="shift-text-label">RECALL</span>
                 <!-- No Alpha label for STO from image -->
@@ -223,10 +223,10 @@
                 <span class="alpha-text-label">M</span>
                 <span class="main-content">M+</span>
             </button>
-        </div>
+          </div>
 
         <!-- Number Pad / Control Row 1 ("6th line" - 7,8,9,DEL,AC) -->
-        <div class="function-row number-pad-row">
+          <div class="function-row number-pad-row">
             <button class="btn btn-numeric"data-value="7">
                 <div class="labels-above">
                     <span class="shift-text-label">CONST</span>
@@ -258,10 +258,10 @@
                 </div>
                 <span class="main-content">AC</span>
             </button>
-        </div>
+          </div>
 
         <!-- Number Pad Row 2 ("7th line" - 4,5,6,×,÷) -->
-        <div class="function-row number-pad-row"> <!-- Using function-row for consistency, specific grid in CSS -->
+          <div class="function-row number-pad-row"> <!-- Using function-row for consistency, specific grid in CSS -->
             <!-- No labels above for 4, 5, 6 -->
             <button class="btn btn-numeric" data-value="4">
                 <span class="main-content">4</span>
@@ -284,10 +284,10 @@
                 </div>
                 <span class="main-content op-symbol">÷</span>
             </button>
-        </div>
+          </div>
 
         <!-- Number Pad Row 3 ("8th line" - 1,2,3,+,−) -->
-        <div class="function-row number-pad-row">
+          <div class="function-row number-pad-row">
             <button class="btn btn-numeric" data-value="1">
                <span class="main-content">1</span>
             </button>
@@ -309,11 +309,11 @@
                 </div>
                 <span class="main-content op-symbol op-minus">−</span>
             </button>
-        </div>
+          </div>
 
         <!-- Number Pad Row 4 ("9th line" - 0,.,x10^x,Ans,=) -->
-        <div class="function-row function-row-cols-6 number-pad-row">
-         <button class="btn spacer-btn" disabled aria-hidden="true"></button>
+          <div class="function-row function-row-cols-6 number-pad-row">
+            <button class="btn spacer-btn" disabled aria-hidden="true"></button>
             <button class="btn btn-numeric" data-value="0">
                 <div class="labels-above">
                     <span class="shift-text-label">Rnd</span>
@@ -325,7 +325,7 @@
                     <span class="shift-text-label">Ran#</span>
                     <span class="alpha-text-label">RanInt</span>
                 </div>
-                <span class="main-content decimal-point">.</span
+                <span class="main-content decimal-point">.</span>
             </button>
             <button class="btn shift-toggle-sci" onclick="handleSciToggle()"> <!-- x10^x button styled as numeric for color -->
                 <div class="labels-above">
@@ -346,7 +346,9 @@
                 </div>
                 <span class="main-content op-symbol">=</span>  
             </button>    
+          </div> 
         </div> 
+      <!-- This closes the function-numeric button group -->    
  <!-- END BUTTON SETUP -->  
  
 <script>  // FUNCTIONS SCRIPTS START HERE  
