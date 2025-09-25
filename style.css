@@ -321,7 +321,10 @@ body {
     font-size: 1rem;
   }
 }
-
+.button-grid .btn-numeric .main-content {
+  font-size: 1rem;
+  font-weight: bold;
+}
 
 .button-grid .function-row {
     display: contents;   /* 👈 Transparent wrapper—lets buttons flow into .button-grid */
