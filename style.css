@@ -302,6 +302,8 @@ body {
 .spacer-btn {
   visibility: hidden;
   pointer-events: none;
+  background: transparent; /* 👈 Ensures no background color leaks */
+  border: none;            /* 👈 Prevents any border from affecting spacing */
 }
 
 @media (max-width: 600px) {
