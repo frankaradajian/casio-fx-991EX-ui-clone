@@ -75,9 +75,17 @@
                  <!-- No alpha label for this one based on previous steps -->
                 <span class="main-content">log<sub class="sym-box-sub"></sub><span class="sym-box-main"></span></span>
             </button>
+            <button class="btn shift-toggle-ln" data-ln="ln(" data-shift-exp="Math.E**" onclick="handleLnToggle()"> <!-- ln Button -->
+                <span class="shift-text-label"><i>e</i><sup><span class="sym-box-inline-sup"></span></sup></span>
+                <span class="base-n-text-label">OCT</span> <!-- Top-right blue -->
+                <span class="main-content">ln</span>
+            </button>
+            <button class="btn shift-toggle-log" data-log="log10(" data-shift-power10="10**" onclick="handleLogToggle()">
+                <span class="shift-text-label">10<sup>x</sup></span> <!-- SHIFT label -->
+                <span class="base-n-text-label">BIN</span>
+                <span class="main-content">LOG</span> <!-- Main label -->
+            </button>
             <button class="btn spacer-btn"></button> <!-- Spacer 1 -->
-            <button class="btn spacer-btn"></button> <!-- Spacer 2 -->
-            <button class="btn spacer-btn"></button> <!-- Spacer 3 -->
             <button class="btn btn-numeric"data-value="7">
                 <div class="labels-above">
                     <span class="shift-text-label">CONST</span>
@@ -148,16 +156,16 @@
                 <span class="base-n-text-label">HEX</span> <!-- Top-right blue -->
                 <span class="main-content">x<sup><span class="sym-box-inline-sup"></span></sup></span>
             </button>
-            <button class="btn shift-toggle-log" data-log="log10(" data-shift-power10="10**" onclick="handleLogToggle()">
-                <span class="shift-text-label">10<sup>x</sup></span> <!-- SHIFT label -->
-                <span class="base-n-text-label">BIN</span>
-                <span class="main-content">LOG</span> <!-- Main label -->
+            
+            <button class="btn" onclick="calculateInverse()" data-value="">
+                <span class="shift-text-label">x!</span>
+                <span class="alpha-text-label">C</span>
+                <span class="main-content">x<sup>-1</sup></span>
             </button>
-
-            <button class="btn shift-toggle-ln" data-ln="ln(" data-shift-exp="Math.E**" onclick="handleLnToggle()"> <!-- ln Button -->
-                <span class="shift-text-label"><i>e</i><sup><span class="sym-box-inline-sup"></span></sup></span>
-                <span class="base-n-text-label">OCT</span> <!-- Top-right blue -->
-                <span class="main-content">ln</span>
+            <button class="btn">
+                <span class="shift-text-label">FACT</span>
+                <span class="alpha-text-label">B</span>
+                <span class="main-content dms-symbol">° ′ ″</span>
             </button>
             <button class="btn spacer-btn"></button> <!-- Spacer 1 -->
             <button class="btn btn-numeric" data-value="4">
@@ -190,16 +198,7 @@
                 <span class="alpha-text-label">A</span>
                 <span class="main-content neg-symbol">(–)</span>
             </button>
-            <button class="btn">
-                <span class="shift-text-label">FACT</span>
-                <span class="alpha-text-label">B</span>
-                <span class="main-content dms-symbol">° ′ ″</span>
-            </button>
-            <button class="btn" onclick="calculateInverse()" data-value="">
-                <span class="shift-text-label">x!</span>
-                <span class="alpha-text-label">C</span>
-                <span class="main-content">x<sup>-1</sup></span>
-            </button>
+            
             <button class="btn">
                 <span class="shift-text-label">sin<sup>-1</sup></span>
                 <span class="alpha-text-label">D</span>
@@ -214,6 +213,40 @@
                 <span class="shift-text-label">tan<sup>-1</sup></span>
                 <span class="alpha-text-label">F</span>
                 <span class="main-content">tan</span>
+            </button>
+            <button class="btn shift-toggle-sci" onclick="handleSciToggle()"> <!-- x10^x button styled as numeric for color -->
+                <div class="labels-above">
+                    <span class="shift-text-label">π</span>
+                    <span class="alpha-text-label"><i>e</i></span>
+                </div>
+                <span class="main-content sci-notation-symbol">×10<sup>x</sup></span>
+            </button>
+            <button class="btn">
+                <span class="shift-text-label">M-</span>
+                <span class="alpha-text-label">M</span>
+                <span class="main-content">M+</span>
+            </button>
+            <button class="btn spacer-btn"></button> <!-- Spacer 1 -->
+            <button class="btn btn-numeric" data-value="1">
+               <span class="main-content">1</span>
+            </button>
+            <button class="btn btn-numeric" data-value="2">
+                <span class="main-content">2</span>
+            </button>
+            <button class="btn btn-numeric" data-value="3">
+                <span class="main-content">3</span>
+            </button>
+            <button class="btn btn-operator" data-value="+">
+                <div class="labels-above">
+                    <span class="shift-text-label">Pol</span>
+                </div>
+               <span class="main-content op-symbol">+</span>
+            </button>
+            <button class="btn btn-operator" data-value="-">
+                <div class="labels-above">
+                    <span class="shift-text-label">Rec</span>
+                </div>
+                <span class="main-content op-symbol op-minus">−</span>
             </button>
           </div>
         <!-- Function Button Row 4 ("5th line" - STO, ENG, etc.) -->
@@ -243,96 +276,11 @@
                 <span class="alpha-text-label">Y</span>
                 <span class="main-content s-d-symbol">S↔D</span>
             </button>
-            <button class="btn">
-                <span class="shift-text-label">M-</span>
-                <span class="alpha-text-label">M</span>
-                <span class="main-content">M+</span>
-            </button>
-          </div>
-
-        <!-- Number Pad / Control Row 1 ("6th line" - 7,8,9,DEL,AC) -->
-          <div class="function-row number-pad-row">
-            <button class="btn btn-numeric"data-value="7">
+            <button class="btn shift-toggle-ans" data-ans="ANS" data-shift-percent="/100" onclick="handleAnsToggle()"> <!-- Ans button styled as numeric for color -->
                 <div class="labels-above">
-                    <span class="shift-text-label">CONST</span>
+                    <span class="shift-text-label">%</span>
                 </div>
-                <div class="main-content">7</div>
-            </button>
-            <button class="btn btn-numeric"data-value="8">
-                <div class="labels-above">                    
-                    <span class="shift-text-label">CONV</span>
-                </div>    
-                <div class="main-content">8</div>
-            </button>
-            <button class="btn btn-numeric"data-value="9">
-                <div class="labels-above">
-                    <span class="shift-text-label">RESET</span>
-                </div>
-                <div class="main-content">9</div>
-            </button>
-            <button class="btn btn-control-del"data-value="C">
-                <div class="labels-above">
-                    <span class="shift-text-label">INS</span>
-                    <span class="alpha-text-label">UNDO</span>
-                </div>
-                <div class="main-content">DEL</div>
-            </button>
-            <button class="btn btn-control-ac">
-                <div class="labels-above">
-                    <span class="shift-text-label">OFF</span>
-                </div>
-                <span class="main-content">AC</span>
-            </button>
-          </div>
-
-        <!-- Number Pad Row 2 ("7th line" - 4,5,6,×,÷) -->
-          <div class="function-row number-pad-row"> <!-- Using function-row for consistency, specific grid in CSS -->
-            <!-- No labels above for 4, 5, 6 -->
-            <button class="btn btn-numeric" data-value="4">
-                <span class="main-content">4</span>
-            </button>
-            <button class="btn btn-numeric" data-value="5">
-                <span class="main-content">5</span>
-            </button>
-            <button class="btn btn-numeric" data-value="6">
-                <span class="main-content">6</span>
-            </button>
-            <button class="btn btn-operator" data-value="*">
-                <div class="labels-above">
-                    <span class="shift-text-label">nPr</span>
-                </div>
-                <span class="main-content op-symbol">×</span>
-            </button>
-            <button class="btn btn-operator" data-value="/">
-                <div class="labels-above">
-                    <span class="shift-text-label">nCr</span>
-                </div>
-                <span class="main-content op-symbol">÷</span>
-            </button>
-          </div>
-
-        <!-- Number Pad Row 3 ("8th line" - 1,2,3,+,−) -->
-          <div class="function-row number-pad-row">
-            <button class="btn btn-numeric" data-value="1">
-               <span class="main-content">1</span>
-            </button>
-            <button class="btn btn-numeric" data-value="2">
-                <span class="main-content">2</span>
-            </button>
-            <button class="btn btn-numeric" data-value="3">
-                <span class="main-content">3</span>
-            </button>
-            <button class="btn btn-operator" data-value="+">
-                <div class="labels-above">
-                    <span class="shift-text-label">Pol</span>
-                </div>
-               <span class="main-content op-symbol">+</span>
-            </button>
-            <button class="btn btn-operator" data-value="-">
-                <div class="labels-above">
-                    <span class="shift-text-label">Rec</span>
-                </div>
-                <span class="main-content op-symbol op-minus">−</span>
+                <span class="main-content">Ans</span>
             </button>
           </div>
 
@@ -352,13 +300,7 @@
                 </div>
                 <span class="main-content decimal-point">.</span>
             </button>
-            <button class="btn shift-toggle-sci" onclick="handleSciToggle()"> <!-- x10^x button styled as numeric for color -->
-                <div class="labels-above">
-                    <span class="shift-text-label">π</span>
-                    <span class="alpha-text-label"><i>e</i></span>
-                </div>
-                <span class="main-content sci-notation-symbol">×10<sup>x</sup></span>
-            </button>
+            
             <button class="btn shift-toggle-ans" data-ans="ANS" data-shift-percent="/100" onclick="handleAnsToggle()"> <!-- Ans button styled as numeric for color -->
                 <div class="labels-above">
                     <span class="shift-text-label">%</span>
