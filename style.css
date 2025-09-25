@@ -321,11 +321,11 @@ body {
 }
 
 
-.function-row {
-    display: grid;
-    gap: 8px;
-    margin-top: 10px;
+.button-grid .function-row {
+    display: contents;   /* 👈 Transparent wrapper—lets buttons flow into .button-grid */
+    margin-top: 10px;    /* ✅ Keeps your spacing */
 }
+
 .function-row-cols-10 {
   grid-template-columns: repeat(10, 1fr);
 }
