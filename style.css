@@ -141,7 +141,7 @@ body {
 .live-display {
   width: 98%;
   height: 100%;
-  font-size: 20px;            /* Adjust for readability */
+  font-size: 17px;            /* Adjust for readability */
   text-align: right;         /* right the text horizontally */
   font-family: 'Roboto Mono', monospace; /* Matches your theme */
   background: linear-gradient(to bottom, #d0e0d0, #b8c8b8); /* Match .display-area */
