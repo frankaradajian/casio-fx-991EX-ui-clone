@@ -348,7 +348,12 @@ buttons.forEach(button => {
 
   // ✅ Operator logic block
     if (['+', '-', '*', '/'].includes(value)) {
-      if (firstOperand === null) {
+      if (display.value.includes('(') || display.value.includes('log') || display.value.includes('sqrt')) {
+     // Expression mode: allow operator to pass through
+       display.value += value;
+       return;
+     }
+     if (firstOperand === null) {
         firstOperand = parseFloat(display.value);
       } else if (operator) {
         const secondOperand = parseFloat(display.value);
@@ -401,7 +406,7 @@ buttons.forEach(button => {
   }
      
     // ✅ Digit or symbol input
-    if (waitingForSecondOperand) {
+    if (waitingForSecondOperand && !display.value.includes('(')) {
       display.value = value;
       waitingForSecondOperand = false;
     } else {
