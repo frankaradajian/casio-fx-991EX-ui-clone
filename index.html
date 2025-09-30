@@ -318,6 +318,22 @@
  <!-- END BUTTON SETUP -->  
  
 <script>  // FUNCTIONS SCRIPTS START HERE  
+// Global state
+let firstOperand = null;
+let operator = null;
+let waitingForSecondOperand = false;
+let displayValue = '0';
+
+// Core calculation engine
+function performCalculation(op, a, b) {
+  switch (op) {
+    case '+': return a + b;
+    case '-': return a - b;
+    case '*': return a * b;
+    case '/': return a / b;
+    default: return b;
+  }
+}
 let memorySlot = null;
 let display = document.getElementById('display');
 let buttons = document.querySelectorAll('.btn');
@@ -330,25 +346,67 @@ buttons.forEach(button => {
 
     if (!value) return; 
 
+  // ✅ Operator logic block
+    if (['+', '-', '*', '/'].includes(value)) {
+      if (firstOperand === null) {
+        firstOperand = parseFloat(display.value);
+      } else if (operator) {
+        const secondOperand = parseFloat(display.value);
+        const result = performCalculation(operator, firstOperand, secondOperand);
+        display.value = result;
+        firstOperand = result;
+      }
+
+      operator = value;
+      waitingForSecondOperand = true;
+      return;
+    }
+
+    // ✅ Clear button logic
     if (value === 'C') {
       display.value = '';
-    } else if (value === '=') {
-      try {
+      firstOperand = null;
+      operator = null;
+      waitingForSecondOperand = false;
+      return;
+    }
+
+    // ✅ Equals button logic
+    if (value === '=') {
+      if (operator && firstOperand !== null) {
+        // Operator-driven calculation
+         const secondOperand = parseFloat(display.value);
+         const result = performCalculation(operator, firstOperand, secondOperand);
+         display.value = result;
+        firstOperand = null;
+        operator = null;
+        waitingForSecondOperand = false;
+      } else {
+        try {
         // Replace symbolic root functions with JavaScript equivalents
-        let expression = display.value
-          .replace(/(?<!\.)\bsqrt\(/g, 'Math.sqrt(')
-          .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(')
-          .replace(/(?<!\.)\blog10\(/g, 'Math.log10(')
-          .replace(/(?<!\.)\bln\(/g, 'Math.log(');
+          let expression = display.value
+            .replace(/(?<!\.)\bsqrt\(/g, 'Math.sqrt(')
+            .replace(/(?<!\.)\bcbrt\(/g, 'Math.cbrt(')
+            .replace(/(?<!\.)\blog10\(/g, 'Math.log10(')
+            .replace(/(?<!\.)\bln\(/g, 'Math.log(');
         
-        let result = eval(expression);  
-        display.value = eval(expression);
-        lastAnswer = result; 
-      } catch {
-        display.value = 'Error';
-     }
-    }else { display.value += value;
-    } 
+          let result = eval(expression);  
+          display.value = eval(expression);
+          lastAnswer = result; 
+        } catch {
+          display.value = 'Error';
+        }
+    }
+    return;
+  }
+     
+    // ✅ Digit or symbol input
+    if (waitingForSecondOperand) {
+      display.value = value;
+      waitingForSecondOperand = false;
+    } else {
+      display.value += value;
+    }
   });
 });
 </script>
@@ -530,7 +588,22 @@ function calculateInverse(event) {
     return;
   }
 
-  display.value = 1 / value;
+  // Apply inverse based on calculator state
+  if (typeof operator !== 'undefined' && firstOperand !== null && waitingForSecondOperand) {
+    // We're entering second operand after an operator
+    const secondOperand = 1 / value;
+    const result = performCalculation(operator, firstOperand, secondOperand);
+    display.value = result;
+    displayValue = result;
+    firstOperand = result;
+    operator = null;
+    waitingForSecondOperand = false;
+  } else {
+    // No operation pending, just invert current value
+    const inverse = 1 / value;
+    display.value = inverse;
+    displayValue = inverse;
+  }
 }
 </script>
 
