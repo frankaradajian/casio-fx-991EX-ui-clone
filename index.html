@@ -358,7 +358,8 @@ buttons.forEach(button => {
 
   // ✅ Operator logic block
     if (['+', '-', '*', '/'].includes(value)) {
-      if (display.value.includes('(') || display.value.includes('log') || display.value.includes('sqrt')) {
+      if (display.value.includes('(') || display.value.includes('log') || display.value.includes('sqrt')||display.value === lastAnswer.toString() ||
+  display.value === memorySlot?.toString()) {
      // Expression mode: allow operator to pass through
        display.value += value;
        return;
