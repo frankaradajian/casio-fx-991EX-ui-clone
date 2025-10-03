@@ -104,7 +104,7 @@
                 </div>
                 <div class="main-content">9</div>
             </button>
-            <button class="btn btn-control-del"data-value="C">
+            <button class="btn btn-control-del"data-value="DEL">
                 <div class="labels-above">
                     <span class="shift-text-label">INS</span>
                     <span class="alpha-text-label">UNDO</span>
@@ -327,13 +327,14 @@ let lastAnswer = '';
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     const value = button.getAttribute('data-value');
-
     if (!value) return; 
-
-    if (value === 'C') {
+    
+    if (value === 'DEL') {
+      display.value = display.value.slice(0, -1);
+     } else if (value === 'C') {
       display.value = '';
-    } else if (value === '=') {
-      try {
+     } else if (value === '=') {
+       try {
         // Replace symbolic root functions with JavaScript equivalents
         let expression = display.value
           .replace(/(?<!\.)\bsqrt\(/g, 'Math.sqrt(')
@@ -344,13 +345,16 @@ buttons.forEach(button => {
         let result = eval(expression);  
         display.value = eval(expression);
         lastAnswer = result; 
-      } catch {
+       } catch {
         display.value = 'Error';
-     }
-    }else { display.value += value;
-    } 
-  });
-});
+       }
+     } else { display.value += value;
+     } 
+    });
+   });
+  
+   document.querySelector('.btn-control-ac').addEventListener('click', handleAC);
+
 </script>
 
 <script>
@@ -602,6 +606,25 @@ function insertAns() {
     display.value += lastAnswer.toString();
   }
 }
+</script>
+
+<script>
+// Function: AC (All Clear)
+function handleAC() {
+  const display = document.getElementById('display');
+
+  // Reset display to default
+  display.value = '0';
+
+  // Reset shift mode
+  shiftMode = false;
+  document.querySelector('.shift-btn-main')?.classList.remove('active-shift');
+
+  // Do NOT reset lastAnswer or memorySlot
+}
+
+// Wire the AC button to this function
+document.querySelector('.btn-control-ac').addEventListener('click', handleAC);
 </script>
 
     </div> <!-- This is the existing closing div for "calculator" -->
