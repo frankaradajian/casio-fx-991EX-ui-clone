@@ -275,12 +275,14 @@
                 <span class="alpha-text-label">Y</span>
                 <span class="main-content s-d-symbol">S↔D</span>
             </button>
-            <button class="btn shift-toggle-ans" data-ans="ANS" data-shift-percent="/100" onclick="handleAnsToggle()"> <!-- Ans button styled as numeric for color -->
-                <div class="labels-above">
-                    <span class="shift-text-label">%</span>
-                </div>
-                <span class="main-content">Ans</span>
+            <button class="btn btn-control-mc" data-value="MC">
+              <div class="labels-above">
+                <span class="shift-text-label">MEM</span>
+                <span class="alpha-text-label">PURGE</span>
+              </div>
+              <div class="main-content">MC</div>
             </button>
+
           </div>
 
         <!-- Number Pad Row 4 ("9th line" - 0,.,x10^x,Ans,=) -->
@@ -348,7 +350,15 @@ buttons.forEach(button => {
        } catch {
         display.value = 'Error';
        }
-     } else { display.value += value;
+     } else if (value === 'MC') {
+      console.log('CM triggered: clearing memory');
+       display.value = '0';
+       lastAnswer = '';
+       memorySlot = null;
+       shiftMode = false;
+       document.querySelector('.shift-btn-main')?.classList.remove('active-shift');
+     } else { 
+       display.value += value;
      } 
     });
    });
